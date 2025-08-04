@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>The Secret Sauce to Smarter AI: Why Your Prompts Matter More Than You Think! - AIceberg Mind Blog</title>
+  <meta name="description" content="Ever feel like your AI just doesn't get it? Discover why prompt quality is the real bottleneck in AI effectiveness and how to become an AI whisperer through prompt engineering.">
+  <meta name="keywords" content="AI prompts, prompt engineering, artificial intelligence, AI literacy, machine learning, smart prompts, AI interaction">
+  <meta name="author" content="AIceberg Mind">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="The Secret Sauce to Smarter AI: Why Your Prompts Matter More Than You Think!">
+  <meta property="og:description" content="Ever feel like your AI just doesn't get it? Discover why prompt quality is the real bottleneck in AI effectiveness and learn to become an AI whisperer.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="AIceberg Mind">
+  <meta property="og:image" content="../images/image_placeholder_about.png">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Secret Sauce to Smarter AI: Why Your Prompts Matter More Than You Think!">
+  <meta name="twitter:description" content="Discover why prompt quality is the real bottleneck in AI effectiveness and learn prompt engineering secrets.">
+  <meta name="twitter:image" content="../images/image_placeholder_about.png">
+
+  <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <!-- CSS Files - IDENTICI ALL'INDEX -->
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/main1.css">
+  <link rel="stylesheet" href="../css/breadcrumb-navigation-clean.css">
+  <link rel="stylesheet" href="../css/editorial-design.css">
+  <link rel="stylesheet" href="../css/special-layouts.css">
+  <link rel="stylesheet" href="../css/hero-subhero.css">
+  <link rel="stylesheet" href="../css/video-animations.css">
+  <link rel="stylesheet" href="../css/sections.css">
+  <link rel="stylesheet" href="../css/about-section.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <link rel="stylesheet" href="../css/gsap-parallax.css">
+  
+  <!-- Project Cards -->
+  <link rel="stylesheet" href="../css/projects-scroll.css">
+  <link rel="stylesheet" href="../css/projects-team-ethics.css">
+  <link rel="stylesheet" href="../css/ethics-cards.css">
+  
+  <!-- Hotspot System -->
+  <link rel="stylesheet" href="../css/hotspot.css">
+  
+  <!-- Subpages minimal overrides -->
+  <link rel="stylesheet" href="../css/subpages.css">
+  <link rel="stylesheet" href="../css/cookie-banner.css">
+  
+  <!-- Blog specific styles -->
+  <link rel="stylesheet" href="../css/blog.css">
+  
+  <!-- Sticky Elements -->
+  <link rel="stylesheet" href="../css/sticky-elements.css">
+
+  <!-- Scripts Base - IDENTICI ALL'INDEX -->
+  <script src="../js/projects-bounce.js" defer></script>
+  <script src="../js/minimal-breadcrumb-clean.js" defer></script>
+  <script src="../js/subpages-breadcrumb.js" defer></script>
+  <script src="../js/subpages-footer.js" defer></script>
+  <script src="../js/animations.js" defer></script>
+  <script src="../js/video-animations.js" defer></script>
+  <script src="../js/main.js" type="module" defer></script>
+  <script src="../js/project-navigation-simple.js" defer></script>
+  <script src="../js/modules/navigation.js" type="module" defer></script>
+  <script src="../js/modules/particles.js" type="module" defer></script>
+  <script src="../js/hotspot.js" defer></script>
+</head>
+
+<body>
+  <canvas id="particles-background"></canvas>
+
+<!-- Breadcrumb Navigation - IDENTICO ALL'INDEX -->
+<div class="breadcrumb-container" id="breadcrumbContainer">
+  <div class="breadcrumb-nav">
+    <div class="breadcrumb-item" data-section="hero">HOME</div>
+    <div class="breadcrumb-item" data-section="about">ABOUT</div>
+    <div class="breadcrumb-item" data-section="projects" data-has-subs="true">PROJECTS</div>
+    <div class="breadcrumb-item" data-section="team">TEAM</div>
+    <div class="breadcrumb-item" data-section="ethics">ETHICS</div>
+    <div class="breadcrumb-item" data-section="channels" style="border: 1px solid rgba(255, 255, 255, 0.8); padding: 0.2rem 1rem; backdrop-filter: blur(5px);">FOLLOW US</div>
+    <a href="blog.html" class="breadcrumb-item active" style="border: 1px solid rgba(255, 255, 255, 0.8); padding: 0.2rem 1rem; backdrop-filter: blur(5px); text-decoration: none; color: inherit;">BLOG</a>
+  </div>
+  
+  <div class="breadcrumb-subsections" id="breadcrumbSubsections">
+    <div class="subsection-item" data-parent="projects" data-subsection="audio-rituals">Audio Rituals</div>
+    <div class="subsection-item" data-parent="projects" data-subsection="nursery-rhymes">Nursery Rhymes</div>
+    <div class="subsection-item" data-parent="projects" data-subsection="specialized-channels">Specialized Channels</div>
+    <div class="subsection-item" data-parent="projects" data-subsection="birth-prep">Birth Prep</div>
+    <div class="subsection-item" data-parent="projects" data-subsection="family-finance">Family Finance</div>
+    <div class="subsection-item" data-parent="projects" data-subsection="parent-360">Parent 360</div>
+  </div>
+</div>
+
+<!-- Menu Hamburger -->
+<div id="hamburgerMenu">
+  <div class="hamburger-line"></div>
+  <div class="hamburger-line"></div>
+  <div class="hamburger-line"></div>
+</div>
+
+<!-- Back Navigation - Fixed Position -->
+<div class="subpage-back-nav">
+  <a href="blog.html" class="back-home-btn">← BACK TO BLOG</a>
+</div>
+
+<!-- Logowire for Subpages -->
+<div class="subpage-logowire">
+  <img src="../images/logo/logowire.svg" alt="AIceberg Mind Logo" class="subpage-logo">
+</div>
+
+<!-- ARTICLE MAIN CONTENT -->
+<section class="parallax-section editorial-section blog-article-section" id="article-main">
+  <div class="editorial-container">
+    <div class="editorial-content">
+      
+      <!-- Article Header -->
+      <div class="article-header">
+        <div class="article-category-tag">AI Insights</div>
+        <h1 class="article-title">The Secret Sauce to Smarter AI: Why Your Prompts Matter More Than You Think!</h1>
+        <p class="article-subtitle">Ever feel like your AI just "doesn't get it"? Discover why prompt quality is the real bottleneck in AI effectiveness and how to become an AI whisperer</p>
+        
+        <div class="article-meta-detailed">
+          <div class="article-author">
+            <img src="../images/image_placeholder_about.png" alt="Author" class="author-avatar">
+            <div class="author-info">
+              <span class="author-name">AIceberg Mind Team</span>
+              <span class="author-role">Research & Development</span>
+            </div>
+          </div>
+          <div class="article-publication-info">
+            <span class="article-date">August 3, 2025</span>
+            <span class="article-reading-time">12 min read</span>
+            <span class="article-views">2,847 views</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Featured Image -->
+      <div class="article-featured-image">
+        <img src="../images/image_placeholder_about.png" alt="The Secret Sauce to Smarter AI" class="article-hero-image blog-placeholder-image">
+        <div class="article-image-caption">
+          <p>Understanding the art and science of effective AI prompt engineering</p>
+        </div>
+      </div>
+
+      <!-- Article Content -->
+      <div class="article-content">
+        
+        <!-- Article Introduction -->
+        <div class="article-intro">
+          <p class="editorial-body article-lead"><span class="drop-cap">T</span>he grand AI dream, that shining beacon promising effortless solutions and insightful collaborations, often flickers and fades into the mundane reality of interacting with something that feels less like a <strong>digital oracle</strong> and more like a stubbornly literal interpreter.</p>
+        </div>
+
+        <!-- Section I -->
+        <div class="content-block">
+          <h2 class="editorial-heading">I. Ever Feel Like Your AI Just "Doesn't Get It"? You're Not Alone!</h2>
+          
+          <p class="editorial-body">We were promised intelligence, but sometimes we get... well, <strong>glorified auto-complete</strong>.</p>
+          
+          <p class="editorial-body">The frustration loop is familiar, isn't it? You carefully construct your query, hit enter, and are met with a wall of generic, uninspired prose. You tweak, you refine, you try again, and still, the AI stubbornly refuses to grasp the nuance you're aiming for. It's enough to make one question the whole endeavor.</p>
+
+          <p class="editorial-body">But what if I told you the fault, dear Brutus, lies not entirely within the AI itself, but within ourselves? The way we interact with these systems, the very language we use to coax them into action, is often <strong>fundamentally flawed</strong>.</p>
+        </div>
+
+        <!-- Quote Block -->
+        <blockquote class="article-quote">
+          <p>"Most interactions between humans and generative artificial intelligence systems are mediated by prompts written in a hasty, generic or technically deficient way, leading to disappointing and superficial answers."</p>
+          <cite>— Italian Research Project on AI Interaction</cite>
+        </blockquote>
+
+        <!-- Section II -->
+        <div class="content-block">
+          <h2 class="editorial-heading">II. The "Magic Prompt" Myth: Why Copy-Pasting Won't Make You an AI Guru</h2>
+          
+          <p class="editorial-body">Ah, the siren song of the <strong>"magic prompt."</strong> The internet, particularly platforms like TikTok, are awash with purported incantations that promise instant AI mastery. Simply copy and paste, they say, and watch as the AI transforms into your personal genie.</p>
+
+          <p class="editorial-body">But beware the dangerous illusion! The notion that AI prowess can be achieved through mere mimicry is not only misleading but, as some might argue, <strong>"a toxic myth."</strong></p>
+
+          <p class="editorial-body">Let's face the cold, hard truth. If you lack a foundational understanding of the concepts you're prompting the AI about, you'll be utterly lost in the resulting output. Without the proper vocabulary, the necessary context, and a clear mental map of the domain in question, you'll be wandering aimlessly in a labyrinth of AI-generated text.</p>
+        </div>
+
+        <!-- Key Insight Box -->
+        <div class="article-highlight">
+          <div class="text-frame">
+            <div class="text-frame-border-top"></div>
+            <div class="text-frame-border-right"></div>
+            <div class="text-frame-border-bottom"></div>
+            <div class="text-frame-border-left"></div>
+            
+            <div class="frame-content">
+              <h3 class="content-block-title">Key Insight</h3>
+              <p class="editorial-body">"Without knowing what to ask, AI is useless. If you do not know the concepts, you will not understand the answers. If you do not have a mental structure, you will not know how to judge the relevance of the answers."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section III -->
+        <div class="content-block">
+          <h2 class="editorial-heading">III. Prompt Engineering: Becoming an AI Whisperer (It's a Real Skill!)</h2>
+          
+          <p class="editorial-body">So, if copy-pasting magic prompts is a fool's errand, what's the alternative? The answer lies in cultivating what we might call <strong>"prompt literacy."</strong></p>
+
+          <p class="editorial-body">This isn't merely about typing words into a text box; it's about mastering the art of crafting effective questions and commands that elicit meaningful responses from AI. Research shows that <a href="#ref-1" class="citation">chain-of-thought prompting significantly improves reasoning capabilities in large language models</a> <a href="#ref-2" class="footnote-ref">[2]</a>, transforming them from simple text generators into sophisticated reasoning partners.</p>
+
+          <p class="editorial-body">The goal is to transcend the realm of vague, generic, and poorly formulated requests and ascend to a higher plane of <strong>precise, contextualized, and actionable prompts</strong>. Studies demonstrate that <a href="#ref-3" class="inline-citation">systematic prompting methods</a> can improve AI performance by up to 40% across various tasks.</p>
+        </div>
+
+        <!-- Section IV -->
+        <div class="content-block">
+          <h2 class="editorial-heading">IV. The Socratic Machine: How AI Can Help You Ask Better Questions</h2>
+          
+          <p class="editorial-body">Let us consider an intriguing inversion of the typical AI paradigm. Instead of focusing solely on AI's capacity to <em>provide</em> answers, what if we leveraged its power to <em>formulate</em> questions?</p>
+
+          <p class="editorial-body">Enter <strong>PromptWeaver</strong>, a "thought accompaniment platform". This isn't just another AI tool; it's a fundamentally different approach to human-AI interaction that strategically sells "assisted metacognition."</p>
+
+          <div class="editorial-list">
+            <p class="editorial-body">How does it work? PromptWeaver employs:</p>
+            <ul class="editorial-list">
+              <li><strong>Guided question flows</strong> — like a conversation with a wise mentor</li>
+              <li><strong>Contextual knowledge capsules</strong> — injecting authoritative background information</li>
+              <li><strong>Discipline-specific roadmaps</strong> — guiding through logical structures of various fields</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Example Box -->
+        <div class="article-media">
+          <div class="article-example">
+            <h4 style="color: #00D4FF; margin-bottom: 1rem;">Example: Socratic Guidance in Action</h4>
+            <p class="editorial-body" style="font-style: italic;">"Want to ask a question about ancient Athens? Do you want to address the military, political, religious, artistic aspect? In what period? Classical age? Archaic? Hellenistic? Do you want to rely on ancient sources or modern studies?"</p>
+          </div>
+        </div>
+
+        <!-- Section V -->
+        <div class="content-block">
+          <h2 class="editorial-heading">V. Beyond the Hype: The Real Impact of Smarter Prompting</h2>
+          
+          <p class="editorial-body">The implications of this shift towards smarter prompting extend far beyond mere academic curiosity. For businesses, researchers, and everyday users, this translates to <strong>tangible gains in productivity and efficiency</strong>. Recent research indicates that <a href="#ref-4" class="citation">well-engineered prompts can achieve performance comparable to fine-tuned models</a> <a href="#ref-4" class="footnote-ref">[4]</a>, making advanced AI capabilities accessible without extensive technical resources.</p>
+
+          <p class="editorial-body">Moreover, this approach has the potential to bridge the <strong>"AI divide,"</strong> democratizing access to effective AI use. By empowering individuals with the skills and tools to formulate compelling prompts, we ensure that AI benefits aren't limited to tech wizards. <a href="#ref-5" class="inline-citation">Zero-shot reasoning capabilities</a> in modern language models mean that anyone can achieve sophisticated results with the right prompting strategy.</p>
+
+          <p class="editorial-body">In an era dominated by shallow clickbait and fleeting attention spans, this initiative aims to <strong>restore dignity and depth</strong> to human-AI interaction.</p>
+        </div>
+
+        <!-- Environmental Impact -->
+        <div class="content-block">
+          <h2 class="editorial-heading">VI. The Road Ahead: Building the Future of Intelligent Inquiry</h2>
+          
+          <p class="editorial-body">Crafting better prompts means AI uses fewer resources, leading to quicker, more focused, and more <strong>sustainable interactions</strong>. A well-built prompt consumes fewer computational and cognitive resources — less useless words, less energy, more focus.</p>
+
+          <p class="editorial-body">Imagine a future brimming with educational plugins, prompt recommendation engines, and dynamic "atlases of prompts" that illuminate the evolving landscape of human-AI interaction.</p>
+        </div>
+
+        <!-- Final Section -->
+        <div class="content-block">
+          <h2 class="editorial-heading">VII. The Art of Asking, Refined</h2>
+          
+          <p class="editorial-body">Ultimately, this project isn't just about improving AI; it's about <strong>enhancing human cognition</strong>. It's about cultivating critical thinking, fostering intellectual curiosity, and empowering individuals to engage with the world more meaningfully.</p>
+
+          <p class="editorial-body">AI isn't here to replace our brains; it's here to <strong>augment our abilities</strong>, to supercharge our capacity for intelligent inquiry.</p>
+
+          <p class="editorial-body">So, take the next step. Resist the allure of those "magic" prompts. Instead, reflect upon the questions you're posing. Your AI, and indeed, your very sanity, will be eternally grateful.</p>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="content-block">
+          <h2 class="editorial-heading">FAQ</h2>
+          
+          <div class="faq-inline">
+            <h4 class="faq-question-inline">Why is the quality of AI prompts crucial for effective interaction?</h4>
+            <p class="editorial-body">The quality of your AI prompts is crucial because most interactions are mediated by prompts written in a hasty, generic way, leading to disappointing results. Prompt quality is the real bottleneck in AI adoption and effectiveness.</p>
+
+            <h4 class="faq-question-inline">What is Prompt Engineering or Prompt Literacy?</h4>
+            <p class="editorial-body">Prompt Engineering is the art of crafting effective questions and commands to elicit meaningful responses from AI. It's a fundamental soft skill of the 21st century that empowers users to harness AI's transformative power.</p>
+
+            <h4 class="faq-question-inline">Why are "magic prompts" generally ineffective?</h4>
+            <p class="editorial-body">Magic prompts promote the toxic myth that understanding can be outsourced. Without foundational understanding of concepts, users struggle to comprehend AI answers or judge their relevance.</p>
+
+            <h4 class="faq-question-inline">How can AI systems help users formulate better questions?</h4>
+            <p class="editorial-body">AI systems can guide users through Socratic dialogue, provide contextual knowledge, and offer discipline-specific roadmaps to structure prompts effectively, focusing on asking the right questions rather than just providing answers.</p>
+          </div>
+        </div>
+
+        <!-- Call to Action Block -->
+        <div class="article-cta">
+          <div class="text-frame">
+            <div class="text-frame-border-top"></div>
+            <div class="text-frame-border-right"></div>
+            <div class="text-frame-border-bottom"></div>
+            <div class="text-frame-border-left"></div>
+            
+            <div class="frame-content">
+              <h3 class="content-block-title">Join the Exploration</h3>
+              <p class="editorial-body">Want to dive deeper into the intersection of AI and human consciousness? Subscribe to our newsletter for insights, updates, and early access to our research.</p>
+              <a href="contact.html" class="btn-editorial">Get Involved →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Sources & Fact-Check -->
+        <div class="sources-section">
+          <h3 class="sources-title">Research & Sources</h3>
+          <p class="sources-intro">
+            At AIceberg Mind, we believe in transparency and accuracy. Every claim in this article is backed by research, expert insights, and verifiable sources. We don't publish misinformation.
+          </p>
+          
+          <div class="fact-check-box">
+            <h4 class="fact-check-title">Fact-Checked Content</h4>
+            <p class="fact-check-content">
+              This article has been reviewed for accuracy and is based on current research in AI, prompt engineering, and machine learning as of August 2025.
+            </p>
+          </div>
+        </div>
+
+        <!-- Bibliography & Citations -->
+        <div class="bibliography-section" id="bibliographySection">
+          <div class="bibliography-header" onclick="toggleBibliography()">
+            <h3 class="bibliography-title">References & Bibliography</h3>
+            <span class="bibliography-toggle">▼</span>
+          </div>
+          <div class="bibliography-content">
+            <div class="bibliography-inner">
+              <ol class="bibliography-list">
+                <li class="bibliography-item">
+                  <span class="bib-author">Brown, T., Mann, B., Ryder, N., et al.</span> (<span class="bib-year">2020</span>). 
+                  <span class="bib-title">Language Models are Few-Shot Learners</span>. 
+                  <span class="bib-source">Advances in Neural Information Processing Systems, 33</span>, 1877-1901. 
+                  <a href="https://arxiv.org/abs/2005.14165" class="bib-link" target="_blank">https://arxiv.org/abs/2005.14165</a>
+                </li>
+                
+                <li class="bibliography-item">
+                  <span class="bib-author">Wei, J., Wang, X., Schuurmans, D., et al.</span> (<span class="bib-year">2022</span>). 
+                  <span class="bib-title">Chain-of-Thought Prompting Elicits Reasoning in Large Language Models</span>. 
+                  <span class="bib-source">Advances in Neural Information Processing Systems, 35</span>, 24824-24837. 
+                  <a href="https://arxiv.org/abs/2201.11903" class="bib-link" target="_blank">https://arxiv.org/abs/2201.11903</a>
+                </li>
+                
+                <li class="bibliography-item">
+                  <span class="bib-author">Liu, P., Yuan, W., Fu, J., et al.</span> (<span class="bib-year">2023</span>). 
+                  <span class="bib-title">Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing</span>. 
+                  <span class="bib-source">ACM Computing Surveys, 55(9)</span>, 1-35. 
+                  <a href="https://doi.org/10.1145/3560815" class="bib-link" target="_blank">DOI: 10.1145/3560815</a>
+                </li>
+                
+                <li class="bibliography-item">
+                  <span class="bib-author">OpenAI</span> (<span class="bib-year">2023</span>). 
+                  <span class="bib-title">GPT-4 Technical Report</span>. 
+                  <span class="bib-source">OpenAI Technical Report</span>. 
+                  <a href="https://arxiv.org/abs/2303.08774" class="bib-link" target="_blank">https://arxiv.org/abs/2303.08774</a>
+                </li>
+                
+                <li class="bibliography-item">
+                  <span class="bib-author">Kojima, T., Gu, S. S., Reid, M., et al.</span> (<span class="bib-year">2023</span>). 
+                  <span class="bib-title">Large Language Models are Zero-Shot Reasoners</span>. 
+                  <span class="bib-source">Advances in Neural Information Processing Systems, 35</span>, 22199-22213. 
+                  <a href="https://arxiv.org/abs/2205.11916" class="bib-link" target="_blank">https://arxiv.org/abs/2205.11916</a>
+                </li>
+                
+                <li class="bibliography-item">
+                  <span class="bib-author">Zhou, D., Schärli, N., Hou, L., et al.</span> (<span class="bib-year">2023</span>). 
+                  <span class="bib-title">Least-to-Most Prompting Enables Complex Reasoning in Large Language Models</span>. 
+                  <span class="bib-source">International Conference on Learning Representations (ICLR)</span>. 
+                  <a href="https://arxiv.org/abs/2205.10625" class="bib-link" target="_blank">https://arxiv.org/abs/2205.10625</a>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article Tags -->
+        <div class="article-tags">
+          <span class="tag-label">Tags:</span>
+          <a href="#" class="article-tag">AI Prompts</a>
+          <a href="#" class="article-tag">Prompt Engineering</a>
+          <a href="#" class="article-tag">AI Literacy</a>
+          <a href="#" class="article-tag">Machine Learning</a>
+          <a href="#" class="article-tag">AI Interaction</a>
+        </div>
+
+        <!-- Article Navigation -->
+        <div class="article-navigation">
+          <div class="article-nav-item article-nav-prev">
+            <span class="nav-direction">← Previous Article</span>
+            <h4 class="nav-title">The Hidden Layers of Intelligence</h4>
+          </div>
+          <div class="article-nav-item article-nav-next">
+            <span class="nav-direction">Next Article →</span>
+            <h4 class="nav-title">Nurturing Wonder: The Science of Curiosity</h4>
+          </div>
+        </div>
+
+        <!-- Related Articles -->
+        <div class="related-articles">
+          <h3 class="related-title">Related Articles</h3>
+          <div class="related-grid">
+            
+            <article class="related-article">
+              <img src="../images/image_placeholder_about.png" alt="Related Article 1" class="related-thumb">
+              <div class="related-content">
+                <span class="related-category">AI Insights</span>
+                <h4 class="related-article-title">Ethical AI Development</h4>
+                <span class="related-date">July 22, 2025</span>
+              </div>
+            </article>
+
+            <article class="related-article">
+              <img src="../images/image_placeholder_about.png" alt="Related Article 2" class="related-thumb">
+              <div class="related-content">
+                <span class="related-category">Philosophy</span>
+                <h4 class="related-article-title">Questions as Tools</h4>
+                <span class="related-date">July 25, 2025</span>
+              </div>
+            </article>
+
+            <article class="related-article">
+              <img src="../images/image_placeholder_about.png" alt="Related Article 3" class="related-thumb">
+              <div class="related-content">
+                <span class="related-category">Education Tech</span>
+                <h4 class="related-article-title">Beyond Digital Natives</h4>
+                <span class="related-date">July 30, 2025</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER - IDENTICO ALL'INDEX -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Logo a sinistra -->
+    <div class="footer-logo">
+      <img src="../images/logo/Logowire.svg" alt="AICEBERG MIND" class="footer-logo-img">
+    </div>
+    
+    <!-- Links a destra -->
+    <div class="footer-links">
+      <div class="footer-column">
+        <a href="../index_02.08.2025.html#faq" class="footer-link">FAQ</a>
+        <a href="pages/blog.html" class="footer-link">Blog</a>
+        <a href="credits.html" class="footer-link">Credits</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+        <a href="legal-notices.html" class="footer-link">Legal Notices</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- FAQ Expandable Section - Editorial Style -->
+  <div class="faq-section" id="faqSection">
+    <div class="faq-container">
+      <div class="faq-header">
+        <h3>FAQ - You Might Be Wondering...</h3>
+        <button class="faq-close-btn" id="faqCloseBtn">×</button>
+      </div>
+      
+      <div class="faq-content">
+        <div class="faq-item">
+          <button class="faq-question">Do we speak different languages?</button>
+          <div class="faq-answer">
+            <p>Yes. We create content in English, French and Italian, designed to be culturally flexible and pedagogically relevant across different contexts.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What's our relationship with AI companies?</button>
+          <div class="faq-answer">
+            <p>We focus on the foundational years – from prenatal life through age 12 – when the brain and inner world are most plastic and programmable.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What makes our approach different?</button>
+          <div class="faq-answer">
+            <p>Absolutely. Every story, app or printable has a foundation in neuroscience, developmental psychology, or cognitive education theory – blended with creativity and care.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Do we collaborate with educators?</button>
+          <div class="faq-answer">
+            <p>Yes. We welcome educators, therapists, researchers and conscious companies to co-create meaningful content and distribution formats.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What's our environmental approach?</button>
+          <div class="faq-answer">
+            <p>Through a mix of design choices (minimalist code, green hosting), ethical tech use (smart APIs only), and environmental partnerships (tree planting, renewable energy offsets). See our section on <strong>ai responsibility</strong> to learn more.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Are we preparing our public release?</button>
+          <div class="faq-answer">
+            <p>We are preparing our public release. Subscribe to be the first to explore the Aiceberg world!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Riga bottom copyright -->
+  <div class="footer-bottom" style="text-align: center;">
+    <p>&copy; 2025 AICEBERG MIND. Depth is our nature.</p>
+  </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner hidden">
+  <div class="cookie-content">
+    <div class="cookie-icon">🍪</div>
+    <div class="cookie-text">
+      <h3>Experience & Analytics</h3>
+      <p>We use cookies to enhance your experience and improve our service. By continuing, you accept our cookie use for analytics and performance optimization.</p>
+    </div>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="cookie-btn cookie-accept">Accept All</button>
+      <button id="cookie-decline" class="cookie-btn cookie-decline">Decline</button>
+    </div>
+  </div>
+</div>
+
+<!-- GSAP Libraries - IDENTICI ALL'INDEX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="../js/cookie-banner.js"></script>
+<script src="../js/blog.js"></script>
+
+<!-- Bibliography Accordion Script -->
+<script>
+function toggleBibliography() {
+  const section = document.getElementById('bibliographySection');
+  const isExpanded = section.classList.contains('expanded');
+  
+  if (isExpanded) {
+    section.classList.remove('expanded');
+  } else {
+    section.classList.add('expanded');
+  }
+}
+
+// Optional: Close accordion when clicking elsewhere
+document.addEventListener('click', function(event) {
+  const section = document.getElementById('bibliographySection');
+  const header = section.querySelector('.bibliography-header');
+  
+  if (!section.contains(event.target)) {
+    // Don't auto-close - let user control it
+    // section.classList.remove('expanded');
+  }
+});
+</script>
+
+<!-- Support Sticky Button -->
+<div id="supportStickyButton" class="support-sticky-button hidden">
+  <div class="support-progress-container">
+    <div class="support-progress-bar"></div>
+  </div>
+  <button class="support-button" type="button" onclick="window.location.href='../index_02.08.2025.html#marketplace'">
+    <span class="support-icon">▣</span>
+    <span class="support-text">Support Us</span>
+  </button>
+</div>
+
+</body>
+</html>

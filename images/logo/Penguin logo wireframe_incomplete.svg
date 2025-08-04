@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400.84 339.24">
+  <defs>
+    <style>
+      .cls-iceberg-surface {
+        fill: none;
+        stroke: #5ee4c3;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.9;
+        filter: drop-shadow(0 0 8px rgba(94, 228, 195, 0.6));
+        animation: icebergGlow 4s ease-in-out infinite;
+      }
+      .cls-iceberg-deep {
+        fill: none;
+        stroke: #3ba3a3;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.8;
+        filter: drop-shadow(0 0 5px rgba(59, 163, 163, 0.4));
+        animation: icebergPulse 6s ease-in-out infinite;
+      }
+      .cls-iceberg-core {
+        fill: none;
+        stroke: #ffffff;
+        stroke-width: 1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.7;
+        filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+        animation: icebergShimmer 3s ease-in-out infinite;
+      }
+      .cls-iceberg-accent {
+        fill: none;
+        stroke: #7df3e1;
+        stroke-width: 1.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.6;
+        filter: drop-shadow(0 0 6px rgba(125, 243, 225, 0.4));
+        animation: icebergFlow 5s ease-in-out infinite;
+      }
+      
+      @keyframes icebergGlow {
+        0%, 100% {
+          opacity: 0.9;
+          filter: drop-shadow(0 0 8px rgba(94, 228, 195, 0.6));
+        }
+        50% {
+          opacity: 1;
+          filter: drop-shadow(0 0 12px rgba(94, 228, 195, 0.8));
+        }
+      }
+      
+      @keyframes icebergPulse {
+        0%, 100% {
+          opacity: 0.8;
+          stroke-width: 1.5;
+        }
+        50% {
+          opacity: 0.9;
+          stroke-width: 1.7;
+        }
+      }
+      
+      @keyframes icebergShimmer {
+        0%, 100% {
+          opacity: 0.7;
+          filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+        }
+        33% {
+          opacity: 0.9;
+          filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+        }
+        66% {
+          opacity: 0.6;
+          filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+        }
+      }
+      
+      @keyframes icebergFlow {
+        0%, 100% {
+          opacity: 0.6;
+          stroke-dasharray: 0, 100;
+        }
+        50% {
+          opacity: 0.8;
+          stroke-dasharray: 20, 10;
+        }
+      }
+    </style>
+  </defs>
+  
+  <!-- Superficie dell'iceberg - Color acqua brillante -->
+  <g class="cls-iceberg-surface">
+    <!-- Elementi principali visibili sopra la superficie -->
+    <path d="M348.26,212.05c-.43-.35-1.06-.28-1.41.15-1.21,1.5-2.4,3.01-3.6,4.53-2.57,3.27-5.23,6.65-8.05,9.77-8,8.82-17.48,16.69-28.99,24.04-4.62,2.95-9.36,5.74-14.19,8.37-.18.13-.37.26-.57.36-.26.12-1.63.88-1.37.68-.04.02-.08.04-.12.06-.24.16-.5.3-.77.4-4.56,2.4-9.19,4.65-13.87,6.73-12.53,5.56-25.83,10.01-39.54,13.21-11.59,2.71-22.07,4.38-32.05,5.1-8.5.61-17.62.83-29.59.7"/>
+    
+    <!-- Occhio del pinguino - Superficie -->
+    <path d="M231.09,128.3c-8.04,0-14.57-6.54-14.57-14.57s6.54-14.57,14.57-14.57,14.57,6.54,14.57,14.57-6.54,14.57-14.57,14.57Z"/>
+  </g>
+  
+  <!-- Profondità media dell'iceberg - Color teal -->
+  <g class="cls-iceberg-deep">
+    <!-- Elementi della parte media -->
+    <path d="M41.24,338.76c-.14,0-.28-.03-.41-.09-.5-.23-.73-.82-.5-1.32l5.49-12.09c4.56-10.05,9.13-20.09,13.68-30.14l.74-1.64c6.23-13.75,12.46-27.51,18.66-41.28,3.65-8.11,7.28-16.22,10.91-24.34,3.21-7.18,6.43-14.37,9.65-21.55"/>
+    
+    <path d="M191.69,220.5c-.09,0-.18-.01-.28-.04-.53-.15-.84-.71-.69-1.24,3.15-11.04,4.34-21.38,3.64-31.62-.64-9.29-3-18.39-7.01-27.04-.58-1.25-1.18-2.49-1.77-3.73-2.48-5.16-5.05-10.5-6.29-16.34"/>
+    
+    <path d="M285.81,207.81c.07-.03.13-.07.2-.09.07-.04.15-.06.22-.09.23-.24.35-.59.26-.94-.14-.53-.69-.84-1.23-.7-12.55,3.4-23.71,5.77-34.13,7.24"/>
+  </g>
+  
+  <!-- Profondità del nucleo - Bianco cristallino -->
+  <g class="cls-iceberg-core">
+    <!-- Elementi del nucleo profondo -->
+    <path d="M303.75,339.24c-4.01,0-7.86-1.57-10.57-4.3-2.59-2.62-4-6.16-3.95-9.97.17-14.89.13-30.04.1-44.69-.01-5.42-.03-10.83-.03-16.25"/>
+    
+    <path d="M338.72,186.47l-3.84-9.18c-2.98-7.14-5.97-14.27-8.94-21.41-4.12-9.89-8.22-19.78-12.32-29.68"/>
+    
+    <path d="M280.49,140.6c-.29,0-.58-.12-.77-.36-1.24-1.51-2.66-1.94-4.15-2.4-1.91-.59-4.07-1.25-4.99-4.42"/>
+  </g>
+  
+  <!-- Accenti fluttuanti - Color acqua chiaro -->
+  <g class="cls-iceberg-accent">
+    <!-- Linee decorative che fluiscono -->
+    <path d="M338.82,187.06c-.24-.48-.81-.7-1.3-.48-1.4.61-2.8,1.23-4.21,1.84-3.12,1.36-6.27,2.74-9.4,4.15"/>
+    
+    <path d="M369.83,167.64c-.53-.17-1.09.13-1.25.65-2.8,8.93-6.4,17.71-10.69,26.09"/>
+    
+    <path d="M312.91,125.99c-.31,0-.62-.14-.81-.42-.32-.45-.22-1.07.23-1.4,1.17-.84,2.37-1.66,3.56-2.47"/>
+    
+    <!-- Particelle decorative -->
+    <circle cx="200" cy="150" r="2"/>
+    <circle cx="250" cy="180" r="1.5"/>
+    <circle cx="180" cy="200" r="1"/>
+    <circle cx="220" cy="120" r="1.2"/>
+  </g>
+</svg>

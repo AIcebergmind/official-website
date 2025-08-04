@@ -1,0 +1,336 @@
+/* ========================================
+   VIDEO ANIMATIONS CSS
+   ======================================== */
+
+/* Video Section - MODIFICATO per permettere iceberg strasbordante */
+.video-section {
+  position: relative;
+  overflow: visible; /* Cambiato da hidden a visible per iceberg */
+  min-height: 100vh;
+  z-index: 2; /* Assicura che il contenuto sia sopra l'iceberg */
+}
+
+/* Video Background Container */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Sotto tutto, incluso l'iceberg */
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+/* Pause Indicator */
+.pause-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  opacity: 0.9;
+}
+
+.pause-icon {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pause-bar {
+  width: 4px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 2px;
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+.pause-bar:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+@keyframes pulse {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+/* Video Overlay for better text readability */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.75) 0%,
+    rgba(30, 41, 59, 0.65) 30%,
+    rgba(15, 23, 42, 0.8) 100%
+  );
+  backdrop-filter: blur(1px);
+  z-index: 1;
+  transition: all 0.5s ease;
+}
+
+/* Ensure content is visible over video */
+.video-section .editorial-container {
+  position: relative;
+  z-index: 5;
+}
+
+.video-section .editorial-content {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ========================================
+   ASYMMETRIC LAYOUT - LEFT ALIGNED
+   ======================================== */
+
+.subhero-asymmetric {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.subhero-left-column {
+  max-width: 600px;
+  padding-right: 2rem;
+}
+
+.subhero-right-column {
+  /* Spazio dedicato alla visualizzazione del video */
+  min-height: 400px;
+  opacity: 0.3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* RIMOSSO: Elemento decorativo circolare che disturbava il layout */
+
+/* Enhanced text layout for asymmetric design */
+.subhero-asymmetric .section-header-editorial {
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+.subhero-asymmetric .editorial-heading {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.subhero-asymmetric .content-block {
+  margin-top: 2rem;
+}
+
+/* Frame adjustments for asymmetric layout */
+.subhero-asymmetric .minimal-frame,
+.subhero-asymmetric .text-frame {
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: slideInLeft 1s ease-out 0.8s both;
+}
+
+.subhero-asymmetric .minimal-frame .frame-content,
+.subhero-asymmetric .text-frame .frame-content {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  /* Simplified single column layout */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 350px;
+}
+
+.subhero-asymmetric .frame-content .editorial-body {
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.subhero-asymmetric .frame-content .btn-editorial {
+  margin-top: 0;
+  align-self: flex-start;
+  text-align: center;
+  min-width: 140px;
+}
+
+/* Il pulsante CTA mantiene lo stile editorial originale */
+
+/* Enhanced text visibility */
+.video-section .editorial-heading,
+.video-section .editorial-body,
+.video-section .section-number {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes videoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.video-background {
+  animation: videoFadeIn 2s ease-in-out;
+}
+
+@keyframes contentSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.video-section .editorial-content {
+  animation: contentSlideUp 1.5s ease-out 0.5s both;
+}
+
+/* Asymmetric layout animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.subhero-left-column {
+  animation: slideInLeft 1.2s ease-out 0.3s both;
+}
+
+.subhero-right-column {
+  animation: fadeInRight 1.5s ease-out 0.8s both;
+}
+
+/* Staggered animation for frame elements */
+.subhero-asymmetric .section-header-editorial {
+  animation: slideInLeft 1s ease-out 0.5s both;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-section .editorial-content {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .video-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.85) 0%,
+      rgba(30, 41, 59, 0.75) 30%,
+      rgba(15, 23, 42, 0.9) 100%
+    );
+  }
+  
+  /* Mobile asymmetric adjustments */
+  .subhero-asymmetric {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
+  .subhero-left-column {
+    max-width: 100%;
+    padding-right: 0;
+    text-align: center;
+  }
+  
+  .subhero-right-column {
+    display: none; /* Hide decorative space on mobile */
+  }
+  
+  .subhero-asymmetric .section-header-editorial {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .subhero-asymmetric .minimal-frame,
+  .subhero-asymmetric .text-frame {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .subhero-asymmetric .editorial-heading {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .subhero-asymmetric .minimal-frame .frame-content,
+  .subhero-asymmetric .text-frame .frame-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Loading state */
+.video-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* Video error fallback */
+.video-error .video-background {
+  background: linear-gradient(
+    135deg,
+    #0f172a 0%,
+    #1e293b 50%,
+    #0f172a 100%
+  );
+}

@@ -1,0 +1,387 @@
+/* === MAIN STYLES - Editorial Design === */
+/* Variables are defined in base.css to avoid duplication */
+
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Scroll Snap */
+  scroll-snap-type: y mandatory;
+}
+
+/* Typography */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* IBM Plex Sans utility class - Updated to editorial fonts */
+.ibm-plex-sans {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Scroll Snap utility */
+.horizontal-scroll-wrapper {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: block;
+}
+
+/* Flexbox Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+/* Grid Utilities */
+.grid { display: grid; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+
+/* Spacing Utilities */
+.m-0 { margin: 0; }
+.mt-auto { margin-top: auto; }
+.mb-auto { margin-bottom: auto; }
+.p-0 { padding: 0; }
+
+/* Text Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Visibility Utilities */
+.hidden { display: none; }
+.invisible { visibility: hidden; }
+.visible { visibility: visible; }
+
+/* Interaction Utilities */
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+
+/* Layout Utilities - Container per centrare le sezioni */
+.container {
+  max-width: min(1200px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-wide {
+  max-width: min(1400px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.container-narrow {
+  max-width: min(800px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+
+
+/* Animation Utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn {
+    padding: 0.625rem 1.25rem;
+    font-size: var(--font-size-xs);
+  }
+  
+  .card {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+  }
+  
+  .container {
+    padding: 0 var(--spacing-xs);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Iceberg Canvas - Hero positioning ESTESO per strasbordare */
+section.hero #iceberg.hero-canvas,
+#iceberg.hero-canvas,
+#iceberg {
+  width: 100%;
+  height: 150vh; /* Esteso per strasbordare nel subhero */
+  max-width: 100vw;
+  max-height: none; /* Rimuoviamo il limite di altezza */
+  display: block;
+  transform-origin: center center;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: visible; /* Permette strasbordamento visibile */
+  pointer-events: none; /* Evita interferenze con interazioni sotto */
+}
+
+/* About section - assicura che appaia sopra l'iceberg overflow */
+#about {
+  position: relative;
+  z-index: 10;
+  background: var(--bg-primary);
+}
+
+/* Particles Background Canvas */
+#particles-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 15;
+  pointer-events: none;
+  background: transparent;
+  
+  /* Leggeri effetti di animazione */
+  animation: 
+    particles-pulse 8s ease-in-out infinite,
+    particles-opacity 12s ease-in-out infinite,
+    particles-glow 15s ease-in-out infinite;
+}
+
+
+
+/* Animazione di pulse molto leggera */
+@keyframes particles-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+}
+
+/* Variazioni di opacità molto sottili */
+@keyframes particles-opacity {
+  0%, 100% { 
+    opacity: 0.8;
+  }
+  33% { 
+    opacity: 0.9;
+  }
+  66% { 
+    opacity: 0.85;
+  }
+}
+
+/* Leggeri cambi di colore attraverso filtri */
+@keyframes particles-glow {
+  0%, 100% { 
+    filter: hue-rotate(0deg) saturate(1) brightness(1);
+  }
+  25% { 
+    filter: hue-rotate(5deg) saturate(1.1) brightness(1.05);
+  }
+  50% { 
+    filter: hue-rotate(-3deg) saturate(0.9) brightness(0.95);
+  }
+  75% { 
+    filter: hue-rotate(8deg) saturate(1.05) brightness(1.02);
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .card {
+    background: white;
+    border: 1px solid black;
+    box-shadow: none;
+  }
+  
+  .btn {
+    display: none;
+  }
+}
+/* Penguin Canvas - Editorial Clean */
+#penguin-canvas {
+  width: 400px;     
+  height: auto;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 300;
+  cursor: grab;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+#penguin-canvas.dragging {
+  cursor: grabbing;
+}
+
+
+/* Spinner (additional styles if needed) */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #333;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo transition styles */
+.logo {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+}
+
+/* Responsive styles for penguin canvas */
+@media (max-width: 768px) {
+  #penguin-canvas {
+    width: 300px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #penguin-canvas {
+    width: 250px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Particles Background Canvas */
+#particles-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 15;
+  pointer-events: none;
+  background: transparent;
+  
+  /* Leggeri effetti di animazione */
+  animation: 
+    particles-pulse 8s ease-in-out infinite,
+    particles-opacity 12s ease-in-out infinite,
+    particles-glow 15s ease-in-out infinite;
+}
+
+
