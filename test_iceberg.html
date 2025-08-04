@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iceberg Test</title>
+    <style>
+        body { margin: 0; background: #1a1a2e; }
+        #iceberg { width: 100vw; height: 100vh; }
+    </style>
+</head>
+<body>
+    <canvas id="iceberg"></canvas>
+    
+    <script type="module">
+        import { IcebergModule } from './js/modules/iceberg.js';
+        import { createIcebergEffects } from './js/modules/iceberg-effects.js';
+        
+        console.log('🧪 Starting iceberg test...');
+        
+        try {
+            const iceberg = new IcebergModule();
+            console.log('✅ Iceberg created');
+            
+            // Aspetta un po' e poi aggiungi gli effetti
+            setTimeout(() => {
+                try {
+                    console.log('🎨 Adding effects...');
+                    const effects = createIcebergEffects(iceberg, {
+                        enabled: true,
+                        surfaces: { enabled: true, opacity: 0.5 }
+                    });
+                    
+                    if (effects) {
+                        console.log('✅ Effects added successfully');
+                        window.icebergEffects = effects;
+                    } else {
+                        console.error('❌ Failed to create effects');
+                    }
+                } catch (e) {
+                    console.error('❌ Error adding effects:', e);
+                }
+            }, 2000);
+            
+            window.iceberg = iceberg;
+            
+        } catch (error) {
+            console.error('❌ Error creating iceberg:', error);
+        }
+    </script>
+</body>
+</html>
