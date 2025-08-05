@@ -186,10 +186,10 @@ Built with curiosity, crafted with care, and designed for those who ask question
 
 ## 📊 Project Status
 
-- **Current Version**: 2.0 (February 2025)
+- **Current Version**: 1.0 (August 2025)
 - **Development Status**: Active
 - **Public Release**: Preparing for launch
-- **Last Updated**: February 2025
+- **Last Updated**: 05th August 2025
 
 ---
 
