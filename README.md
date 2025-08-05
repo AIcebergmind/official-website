@@ -1,18 +1,21 @@
-# AIceberg Mind - Official Website
+# AIcebergMind – Official Website
 
 ## Overview
 
-AIceberg Mind is an innovative platform that creates AI-driven tools for deep thinking and cognitive development. Our mission is to foster curiosity, enhance human potential, and support meaningful learning experiences from early childhood to lifelong wonder.
+AIcebergMind is a mindful digital ecosystem blending storytelling, science, and design — powered by AI but rooted in human curiosity.  
+We create digital content — stories, printables, learning tools, visual generators — crafted with care to support meaningful learning and discovery across all ages.
 
-## 🌟 Features
+From early childhood to university students, from parents to lifelong learners, our mission is to inspire depth, autonomy, and play in a noisy digital world.
 
-- **Interactive AI Tools**: Educational content designed to spark curiosity and deep thinking
-- **Multi-language Support**: Content available in English, French, and Italian
-- **Research-Based Approach**: Every tool grounded in neuroscience, developmental psychology, and cognitive education theory
-- **Ethical AI Development**: Privacy-first design with environmental consciousness
-- **Responsive Design**: Optimized for all devices with modern web technologies
+## Features
 
-## 🚀 Live Projects
+- **AI-Enhanced Content**: Stories, printables, guides, and tools augmented by ethical AI — not driven by it.
+- **Multi-language Support**: Content in English, French, and Italian
+- **Curated & Craft-Based**: Every object is a designed experience — aesthetic, mindful, and pedagogically informed.
+- **Ethical & Eco-Aware**: Privacy-first, green hosting, minimal digital footprint
+- **Cross-Generational Design**: Interfaces and experiences tailored for kids, teens, parents, and seniors
+
+## Live Projects
 
 ### Current Offerings
 - **Audio Rituals**: Evening hypnosis for deep rest and family bonding
@@ -22,7 +25,7 @@ AIceberg Mind is an innovative platform that creates AI-driven tools for deep th
 - **Family Finance Education**: Playful tools for conscious money management
 - **Parent 360 App**: All-in-one parenting toolkit (in development)
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
 - **HTML5/CSS3**: Semantic markup with modern CSS features
@@ -40,7 +43,7 @@ AIceberg Mind is an innovative platform that creates AI-driven tools for deep th
 - **Component-Based CSS**: Modular stylesheets for maintainability
 - **Progressive Enhancement**: Works without JavaScript, enhanced with it
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 /
@@ -65,7 +68,7 @@ AIceberg Mind is an innovative platform that creates AI-driven tools for deep th
 └── video/                 # Video content
 ```
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 - **Depth Over Surface**: Content that encourages exploration beneath the obvious
 - **Minimal Complexity**: Clean interfaces that don't overwhelm
@@ -73,7 +76,7 @@ AIceberg Mind is an innovative platform that creates AI-driven tools for deep th
 - **Accessibility First**: Inclusive design for all users
 - **Environmental Consciousness**: Optimized for minimal resource usage
 
-## 🌱 Ethics & Values
+## Ethics & Values
 
 ### Our Commitments
 - **Privacy by Design**: Minimal data collection, local storage when possible
@@ -82,7 +85,7 @@ AIceberg Mind is an innovative platform that creates AI-driven tools for deep th
 - **Accessibility**: Inclusive design for users of all abilities
 - **Sustainability**: Long-term thinking in all digital choices
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge)
@@ -116,7 +119,7 @@ AIceberg Mind is an innovative platform that creates AI-driven tools for deep th
 ### Development Setup
 For development with live reloading, you can use the included [`start_server.bat`](start_server.bat) file or set up your preferred development environment.
 
-## 🔧 Key Components
+## Key Components
 
 ### Animation System
 - **GSAP Integration**: Smooth, performant animations
@@ -134,21 +137,21 @@ For development with live reloading, you can use the included [`start_server.bat
 - **Mobile Menu**: Responsive navigation
 - **Smooth Scrolling**: Enhanced user experience
 
-## 🌍 Multilingual Support
+## Multilingual Support
 
 The site supports content in three languages:
 - **English**: Primary language
 - **French**: Full localization
 - **Italian**: Complete translation
 
-## 📱 Browser Support
+## Browser Support
 
 - Chrome 80+
 - Firefox 75+
 - Safari 13+
 - Edge 80+
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions from educators, developers, designers, and researchers who share our vision of thoughtful AI development.
 
@@ -159,17 +162,17 @@ We welcome contributions from educators, developers, designers, and researchers 
 - Accessibility enhancements
 - Translation work
 
-## 📄 License
+## License
 
 This project represents the intellectual property of AIceberg Mind. Please see our [legal notices](pages/legal-notices.html) for detailed terms of use.
 
-## 🔗 Connect With Us
+## Connect With Us
 
 - **Website**: [aicebergmind.com](https://aicebergmind.com)
 - **Email**: hello@aicebergmind.com
 - **Blog**: [Read our latest insights](pages/blog.html)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 ### Development Tools
 - **GitHub Copilot**: Code assistance and suggestions
@@ -184,7 +187,7 @@ Built with curiosity, crafted with care, and designed for those who ask question
 
 *"Depth is our nature."* - AIceberg Mind
 
-## 📊 Project Status
+## Project Status
 
 - **Current Version**: 1.0 (August 2025)
 - **Development Status**: Active
@@ -193,4 +196,4 @@ Built with curiosity, crafted with care, and designed for those who ask question
 
 ---
 
-For technical questions, collaboration inquiries, or just to say hello, reach out at **hello@aicebergmind.com**
+For technical questions, collaboration inquiries, or just to say hello, reach out at **contact@aicebergmind.com**
