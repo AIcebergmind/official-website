@@ -557,7 +557,7 @@ class AicebergPreloader {
     gsap.globalTimeline.clear();
     
     // Immediate redirect to main site
-    window.location.href = 'index_02.08.2025.html';
+    window.location.href = 'index.html';
   }
   
   completePreloader() {
@@ -571,7 +571,7 @@ class AicebergPreloader {
       ease: "power2.inOut",
       onComplete: () => {
         // Redirect to main site
-        window.location.href = 'index_02.08.2025.html';
+        window.location.href = 'index.html';
       }
     });
   }
