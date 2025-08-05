@@ -1,7 +1,5 @@
 # AIceberg Mind - Official Website
 
-**Where depth meets discovery, and thinking becomes an art.**
-
 ## Overview
 
 AIceberg Mind is an innovative platform that creates AI-driven tools for deep thinking and cognitive development. Our mission is to foster curiosity, enhance human potential, and support meaningful learning experiences from early childhood to lifelong wonder.
