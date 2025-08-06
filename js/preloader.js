@@ -6,7 +6,7 @@
 class AicebergPreloader {
   constructor() {
     this.currentPhase = 0;
-    this.countdown = 10;
+    this.countdown = 3;
     this.isComplete = false;
     
     // DOM Elements
@@ -591,7 +591,7 @@ console.log(`
   Click "Enter AIceberg Mind" when ready
   
   Phases:
-  1. Countdown (10-1)
+  1. Countdown (3-1)
   2. Algorithm Visualization  
   3. Logo Reveal
   4. Final Transition
