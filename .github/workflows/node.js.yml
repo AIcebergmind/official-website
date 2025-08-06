@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          # cache: 'npm' → supprimé car il exige un lockfile
+          # ⚠️ Ne pas mettre 'cache: npm' si pas de lockfile
       - run: npm install
       - run: npm run build --if-present
       - run: npm test
