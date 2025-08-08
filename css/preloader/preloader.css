@@ -1,0 +1,635 @@
+/* ========================================
+   PRELOADER STYLES - EDITORIAL DESIGN
+   ======================================== */
+
+:root {
+  /* Editorial Color System */
+  --bg-primary: #0a0a0a;
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --accent-subtle: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.08);
+  
+  /* Editorial Spacing System */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 4rem;
+  
+  /* Editorial Typography Scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* Editorial Animation System */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s ease;
+  
+  /* Editorial Typography System */
+  --font-primary: "Inter", "IBM Plex Sans", sans-serif;
+  --font-serif: "Crimson Text", Georgia, serif;
+  --font-display: "Inter", sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Inter', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+  
+  /* Editorial Z-Index Scale */
+  --z-background: -1;
+  --z-base: 0;
+  --z-raised: 10;
+  --z-overlay: 50;
+  --z-modal: 100;
+  --z-tooltip: 1000;
+
+  /* Editorial Gradients */
+  --gradient-main: linear-gradient(135deg, #5EE4C3, #00D4FF);
+  --gradient-soft: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(94,228,195,0.03) 50%, rgba(0,212,255,0.05) 100%);
+  --gradient-hover-line: linear-gradient(90deg, transparent, rgba(94, 228, 195, 0.5), transparent);
+  --gradient-iceberg: linear-gradient(135deg, rgba(94, 228, 195, 0.6), rgba(0, 212, 255, 0.4));
+  
+  /* Ice Colors */
+  --color-ice-light: rgba(94, 228, 195, 0.8);
+  
+  /* Code Syntax - Editorial Colors */
+  --color-code-keyword: #5EE4C3;
+  --color-code-function: #00D4FF;
+  --color-code-string: rgba(255, 255, 255, 0.85);
+  --color-code-comment: var(--text-tertiary);
+  --color-code-variable: rgba(94, 228, 195, 0.8);
+  --color-code-operator: rgba(255, 255, 255, 0.9);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+}
+
+.preloader-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+}
+
+.preloader-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* ========================================
+   SKIP BUTTON - Always visible
+   ======================================== */
+
+.skip-btn {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border-radius: 0;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.skip-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition-fast);
+}
+
+.skip-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 1;
+  transform: translateX(-2px);
+}
+
+.skip-btn:hover svg {
+  transform: translateX(2px);
+}
+
+.skip-btn:focus {
+  outline: none;
+  border-color: rgba(94, 228, 195, 0.5);
+  box-shadow: 0 0 0 2px rgba(94, 228, 195, 0.1);
+}
+
+/* ========================================
+   PHASE 1: COUNTDOWN
+   ======================================== */
+
+.countdown-phase {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.countdown-phase::after {
+  content: '';
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(94, 228, 195, 0.1) 20%, rgba(94, 228, 195, 0.2) 50%, rgba(94, 228, 195, 0.1) 80%, transparent 100%);
+  pointer-events: none;
+}
+
+.countdown-number {
+  font-family: var(--font-primary);
+  font-size: clamp(8rem, 20vw, 20rem);
+  font-weight: 100;
+  color: var(--text-primary);
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 40px rgba(94, 228, 195, 0.15),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  transform: scale(1);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+
+.countdown-label {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.ice-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ice-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(94, 228, 195, 0.6);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+}
+
+/* ========================================
+   PHASE 2: ALGORITHM VISUALIZATION
+   ======================================== */
+
+.algorithm-phase {
+  position: absolute;
+  display: none;
+  width: 90%;
+  max-width: 1200px;
+  height: 80%;
+  z-index: 10;
+  opacity: 0;
+}
+
+.algorithm-container {
+  flex: 1;
+  background: var(--gradient-soft);
+  border: 1px solid var(--border-light);
+  border-radius: 0 2rem 0 2rem;
+  padding: var(--spacing-lg);
+  backdrop-filter: blur(20px);
+  margin-right: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.algorithm-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-hover-line);
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.algorithm-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-primary);
+}
+
+.algorithm-title {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-secondary);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.cursor-blink {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+  animation: blink 1s infinite;
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.code-lines {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+.code-line {
+  margin-bottom: var(--spacing-xs);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+}
+
+.code-line.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.indent-1 { padding-left: var(--spacing-lg); }
+.indent-2 { padding-left: var(--spacing-xl); }
+
+/* Code Syntax Highlighting - Editorial Style */
+.code-keyword { color: var(--color-code-keyword); font-weight: 500; }
+.code-function { color: var(--color-code-function); font-weight: 400; }
+.code-string { color: var(--color-code-string); }
+.code-variable { color: var(--color-code-variable); }
+.code-operator { color: var(--color-code-operator); }
+.code-bracket { color: var(--text-secondary); }
+.code-param { color: var(--color-code-variable); }
+.code-property { color: var(--color-code-function); }
+.code-colon { color: var(--text-secondary); }
+.code-comma { color: var(--text-secondary); }
+.code-semicolon { color: var(--text-secondary); }
+
+.algorithm-progress {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-light);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--border-light);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-main);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+  font-weight: 300;
+}
+
+/* Logo Formation - Phase 2 */
+.logo-formation {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-wireframe {
+  width: 100%;
+  max-width: 550px;
+  height: auto;
+  opacity: 1;
+  transform: scale(1);
+  filter: drop-shadow(0 0 20px rgba(94, 228, 195, 0.2)) 
+          drop-shadow(0 0 40px rgba(94, 228, 195, 0.1));
+}
+
+/* Rimuoviamo le regole CSS per lasciare che GSAP controlli tutto */
+
+/* ========================================
+   PHASE 3: LOGO REVEAL
+   ======================================== */
+
+.logo-reveal-phase {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0;
+}
+
+.logo-container {
+  margin-bottom: 3rem;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.logo-svg {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(94, 228, 195, 0.3)) 
+          drop-shadow(0 0 80px rgba(94, 228, 195, 0.1));
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gradient-iceberg);
+  box-shadow: 
+    0 0 40px rgba(94, 228, 195, 0.3),
+    0 0 80px rgba(94, 228, 195, 0.1);
+}
+
+.Logowire svg {
+  width: 100%;
+  height: 100%;
+  max-width: 220px;
+  max-height: 220px;
+}
+
+.logo-fallback {
+  font-family: var(--font-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 200;
+  line-height: 1.1;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.025em;
+}
+
+.ai-part {
+  background: var(--gradient-main);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ceberg-part {
+  background: var(--text-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 100;
+}
+
+.mind-part {
+  color: var(--text-secondary);
+  font-weight: 100;
+}
+
+.brand-tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* ========================================
+   PHASE 4: TRANSITION OUT
+   ======================================== */
+
+.transition-phase {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0;
+}
+
+.ready-message {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  opacity: 0;
+  transform: translateY(30px);
+  line-height: 1.3;
+}
+
+.enter-site-btn {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.enter-site-btn:hover {
+  border-color: var(--text-tertiary);
+  background: var(--accent-subtle);
+  transform: translateY(15px);
+}
+
+.enter-site-btn:focus {
+  outline: none;
+  border-color: rgba(94, 228, 195, 0.5);
+  box-shadow: 0 0 0 2px rgba(94, 228, 195, 0.2);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+  .skip-btn {
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .skip-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .algorithm-phase {
+    flex-direction: column;
+    width: 95%;
+    height: 90%;
+  }
+  
+  .algorithm-container {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .code-lines {
+    font-size: 0.8rem;
+  }
+  
+  .indent-1 { padding-left: 1rem; }
+  .indent-2 { padding-left: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .countdown-number {
+    font-size: 12rem;
+  }
+  
+  .algorithm-container {
+    padding: 1rem;
+  }
+  
+  .code-lines {
+    font-size: 0.7rem;
+    line-height: 1.6;
+  }
+}
+
+/* ========================================
+   ANIMATIONS & EFFECTS
+   ======================================== */
+
+.phase-enter {
+  animation: phaseEnter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.phase-exit {
+  animation: phaseExit 0.6s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+@keyframes phaseEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes phaseExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.05) translateY(-20px);
+  }
+}
+
+/* Glitch Effect for Transitions */
+.glitch {
+  animation: glitch 0.3s ease-in-out;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}

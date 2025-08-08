@@ -1,0 +1,839 @@
+/* === PROJECTS SECTION STYLES - DUE FILE CHE SCORRONO === */
+
+/* ⚠️ NOTA: Le regole base per layout e animazioni sono in projects-scroll-working.css */
+/* Qui manteniamo solo regole specifiche che non sono duplicate */
+
+.projects-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* 🖼️ ANIMATED BORDER SYSTEM - come subhero CTA */
+.project-card .frame-border-top,
+.project-card .frame-border-right,
+.project-card .frame-border-bottom,
+.project-card .frame-border-left {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 3;
+}
+
+.project-card .frame-border-top {
+  top: -1px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+}
+
+.project-card .frame-border-right {
+  top: 0;
+  right: -1px;
+  width: 2px;
+  height: 0%;
+}
+
+.project-card .frame-border-bottom {
+  bottom: -1px;
+  right: 0;
+  width: 0%;
+  height: 2px;
+}
+
+.project-card .frame-border-left {
+  bottom: 0;
+  left: -1px;
+  width: 2px;
+  height: 0%;
+}
+
+/* Corner dots per le project cards */
+.project-card {
+  --corner-opacity: 0;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  z-index: 4;
+  opacity: var(--corner-opacity);
+  bottom: -2px;
+  right: -2px;
+  transition: opacity var(--transition-base);
+}
+
+.project-card:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ⚠️ NOTA: Regole base per .project-card, .project-description, .project-header, 
+   .project-title, .project-subtitle, .project-features, .feature-tag, 
+   .project-progress, .progress-bar, .progress-text, .project-btn 
+   sono definite in projects-scroll-working.css con !important */
+
+.project-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem; /* 🎯 Ridotto per layout compatto */
+  font-weight: 600;
+  background: var(--gradient-main);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem; /* 🎯 Spaziatura ridotta */
+  transition: all var(--transition-base);
+  line-height: 1.2;
+}
+
+.project-card:hover .project-title {
+  background: linear-gradient(135deg, #5EE4C3, #3AC8F5, #00D4FF);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.project-subtitle {
+  font-size: 0.85rem; /* 🎯 Ridotto */
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.project-description {
+  flex: 1;
+  margin-bottom: var(--spacing-sm);
+  min-height: 0; /* 🎯 Per flex shrinking */
+}
+
+.project-description p {
+  font-size: 0.8rem; /* 🎯 Ridotto */
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--spacing-xs);
+}
+
+.project-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem; /* 🎯 Gap ridotto */
+  margin-bottom: var(--spacing-xs);
+}
+
+.feature-tag {
+  background: rgba(94, 228, 195, 0.08);
+  color: var(--glacier-blue);
+  padding: 0.15rem 0.4rem; /* 🎯 Padding ridotto */
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem; /* 🎯 Font ridotto */
+  font-weight: 500;
+  border: 1px solid rgba(94, 228, 195, 0.2);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.feature-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-main);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.feature-tag:hover {
+  background: rgba(94, 228, 195, 0.15);
+  border-color: var(--glacier-blue);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(94, 228, 195, 0.2);
+}
+
+.feature-tag:hover::before {
+  opacity: 0.05;
+}
+
+/* ===== VARIANTI COLORE PER PROGETTI ===== */
+/* Audio Rituals - Viola/Malva per la serenità */
+.project-audio::before {
+  background: linear-gradient(135deg, #a6c1ee, #5EE4C3) !important;
+}
+
+.project-audio .project-title {
+  background: linear-gradient(135deg, #a6c1ee, #5EE4C3) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.project-audio .progress-fill {
+  background: linear-gradient(90deg, #a6c1ee, #5EE4C3) !important;
+  box-shadow: 0 0 8px rgba(166, 193, 238, 0.3) !important;
+}
+
+/* Nursery Rhymes - Arancione caldo per la gioia */
+.project-nursery::before {
+  background: linear-gradient(135deg, #FFB366, #5EE4C3);
+}
+
+.project-nursery .project-title {
+  background: linear-gradient(135deg, #FFB366, #3AC8F5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-nursery .progress-fill {
+  background: linear-gradient(90deg, #FFB366, #5EE4C3);
+  box-shadow: 0 0 8px rgba(255, 179, 102, 0.3);
+}
+
+/* Specialized Channels - Verde acqua per la saggezza */
+.project-channels::before {
+  background: linear-gradient(135deg, #5EE4C3, #00D4FF);
+}
+
+.project-channels .project-title {
+  background: linear-gradient(135deg, #5EE4C3, #00D4FF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-channels .progress-fill {
+  background: linear-gradient(90deg, #5EE4C3, #00D4FF);
+  box-shadow: 0 0 8px rgba(94, 228, 195, 0.4);
+}
+
+/* Birth Prep - Rosa delicato per la maternità */
+.project-birth::before {
+  background: linear-gradient(135deg, #F8BBD9, #5EE4C3);
+}
+
+.project-birth .project-title {
+  background: linear-gradient(135deg, #F8BBD9, #3AC8F5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-birth .progress-fill {
+  background: linear-gradient(90deg, #F8BBD9, #5EE4C3);
+  box-shadow: 0 0 8px rgba(248, 187, 217, 0.3);
+}
+
+/* Family Finance - Oro per la prosperità */
+.project-finance::before {
+  background: linear-gradient(135deg, #FFD700, #5EE4C3);
+}
+
+.project-finance .project-title {
+  background: linear-gradient(135deg, #FFD700, #3AC8F5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-finance .progress-fill {
+  background: linear-gradient(90deg, #FFD700, #5EE4C3);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* Parent 360 App - Blu tech per l'innovazione */
+.project-app::before {
+  background: linear-gradient(135deg, #3AC8F5, #00D4FF);
+}
+
+.project-app .project-title {
+  background: linear-gradient(135deg, #3AC8F5, #00D4FF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.project-app .progress-fill {
+  background: linear-gradient(90deg, #3AC8F5, #00D4FF);
+  box-shadow: 0 0 8px rgba(58, 200, 245, 0.3);
+}
+
+.project-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px; /* 🎯 Ridotto */
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-glow);
+  opacity: 0.2;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-main);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 6px rgba(94, 228, 195, 0.3); /* 🎯 Ridotto */
+}
+
+.progress-text {
+  font-size: 0.7rem; /* 🎯 Ridotto */
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.4rem 0.8rem; /* 🎯 Ridotto */
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem; /* 🎯 Ridotto */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  align-self: flex-start;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  min-width: fit-content;
+}
+
+.project-btn {
+  background: transparent;
+  border: 1px solid rgba(94, 228, 195, 0.4);
+  color: var(--glacier-blue);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-size: 0.9rem;
+  align-self: flex-start !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-main);
+  transition: left var(--transition-base);
+  z-index: 0;
+  opacity: 0.1;
+}
+
+.project-btn:hover::before {
+  left: 0;
+  opacity: 0.2;
+}
+
+.project-btn:hover {
+  border-color: var(--glacier-blue);
+  color: #fff;
+  transform: translateX(5px);
+  box-shadow: 0 0 12px rgba(94, 228, 195, 0.2);
+}
+
+
+/* Project Indicators */
+.projects-indicator {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.indicator-dot.active {
+  background: var(--glacier-blue);
+  transform: scale(1.2);
+}
+
+.indicator-dot:hover {
+  background: var(--ice-cyan);
+}
+
+/* More to Come */
+.more-to-come {
+  flex: 0 0 auto;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.more-to-come:hover {
+  border-color: var(--glacier-blue);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.more-content h4 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ice-cyan);
+  margin-bottom: var(--spacing-md);
+}
+
+.more-content p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+}
+
+.more-content small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* === PROJECT NAVIGATION - EDITORIAL STYLE === */
+.project-navigation {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.project-nav-arrow {
+  width: 48px;
+  height: 48px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+}
+
+.project-nav-arrow:hover {
+  border-color: white;
+  background: transparent;
+  transform: translateY(-2px);
+}
+
+.project-nav-arrow:active {
+  transform: translateY(0);
+  filter: blur(2px);
+  color: white;
+}
+
+.project-nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.project-nav-arrow:disabled:hover {
+  border-color: white;
+  background: transparent;
+  transform: none;
+}
+
+/* === CHANNELS SLIDER ANIMATION === */
+.channels-slider {
+  overflow: hidden;
+  width: 100%;
+  margin: 2rem 0;
+  position: relative;
+  height: 100px;
+}
+
+.channels-track {
+  display: flex;
+  animation: scroll-channels 12s linear infinite;
+  white-space: nowrap;
+  gap: 2rem;
+  height: 100%;
+  align-items: center;
+}
+
+.channel-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 80px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.channel-logo:hover {
+  transform: translateY(-4px);
+}
+
+.channel-logo svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  stroke: currentColor;
+  fill: none;
+  transition: color 0.3s ease;
+}
+
+.channel-logo span {
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.channel-logo:hover span {
+  opacity: 1;
+}
+
+@keyframes scroll-channels {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* === TEAM SECTION STYLES === */
+
+.team-intro {
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--ice-cyan);
+}
+
+.team-origins,
+.team-philosophy,
+.team-experience,
+.team-reality,
+.team-beliefs {
+  max-width: 900px;
+  margin: 0 auto var(--spacing-xl) auto;
+  text-align: center;
+}
+
+.team-origins p,
+.team-philosophy p,
+.team-experience p,
+.team-reality p,
+.team-beliefs p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-md);
+}
+
+.team-distinction {
+  font-size: 2.2rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--frost-white);
+}
+
+.team-distinction strong {
+  color: var(--glacier-blue);
+  font-weight: 600;
+}
+
+.team-question {
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--ice-cyan);
+  border-left: 4px solid var(--glacier-blue);
+  padding-left: var(--spacing-lg);
+  margin: var(--spacing-xl) 0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+}
+
+.team-manifesto {
+  margin-top: var(--spacing-xxl);
+}
+
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.manifesto-item {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform var(--transition-base);
+}
+
+.manifesto-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--glacier-blue);
+}
+
+.manifesto-item h4 {
+  font-size: 1.4rem;
+  color: var(--glacier-blue);
+  font-weight: 600;
+}
+
+/* === RESPONSIVE DESIGN - FORMATO QUADRATO === */
+
+/* Tablet landscape */
+@media (max-width: 1024px) {
+  .project-card {
+    min-width: 260px !important;
+    width: 260px !important;
+    height: 260px !important;
+    min-height: 260px !important;
+    max-height: 260px !important;
+    padding: var(--spacing-sm) !important;
+  }
+  
+  .project-title {
+    font-size: 1rem !important;
+  }
+  
+  .project-subtitle {
+    font-size: 0.75rem !important;
+  }
+  
+  .feature-tag {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
+  }
+  
+  .project-btn {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.7rem !important;
+  }
+  
+  /* 🎯 Animazioni più lente per tablet */
+  .projects-row-1 {
+    animation-duration: 45s !important;
+  }
+  
+  .projects-row-2 {
+    animation-duration: 50s !important;
+  }
+}
+
+/* === MOBILE RESPONSIVENESS - FORMATO QUADRATO === */
+@media (max-width: 767.98px) {
+  .project-card {
+    min-width: 280px !important;
+    width: 280px !important;
+    height: 280px !important; /* 🟩 QUADRATA anche su mobile */
+    min-height: 280px !important;
+    max-height: 280px !important;
+    padding: var(--spacing-sm) !important;
+  }
+  
+  .project-title {
+    font-size: 1rem !important;
+  }
+  
+  .project-subtitle {
+    font-size: 0.75rem !important;
+  }
+  
+  .feature-tag {
+    font-size: 0.6rem !important;
+    padding: 0.1rem 0.3rem !important;
+  }
+  
+  .project-btn {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.7rem !important;
+  }
+
+  .progress-text {
+    font-size: 0.6rem !important;
+  }
+  
+  /* 🎯 Animazioni ancora più lente per mobile */
+  .projects-row-1 {
+    animation-duration: 60s !important;
+  }
+  
+  .projects-row-2 {
+    animation-duration: 65s !important;
+  }
+}
+
+  .project-navigation {
+    display: none;
+  }
+
+  .team-intro {
+    font-size: 2rem;
+  }
+
+  .team-distinction {
+    font-size: 1.8rem;
+  }
+
+  .team-question {
+    font-size: 1.4rem;
+    padding: var(--spacing-md);
+  }
+
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .channels-simple {
+    justify-content: center;
+  }
+  
+  .channel-simple {
+    font-size: 0.8rem;
+  }
+
+  .channels-track {
+    animation-duration: 20s;
+  }
+
+  .channel-logo {
+    width: 100px;
+    height: 60px;
+    margin: 0 var(--spacing-sm);
+  }
+
+@media (max-width: 479.98px) {
+  .team-intro {
+    font-size: 1.8rem;
+  }
+
+  .team-distinction {
+    font-size: 1.5rem;
+  }
+
+  .team-question {
+    font-size: 1.2rem;
+  }
+
+  .projects-content,
+  .ethics-container {
+    padding: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   🔴 ETHICS SECTION
+   ======================================== */
+
+/* ETHICS Section */
+.ethics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.ethics-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  transition: all 0.3s ease;
+}
+
+.ethics-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ethics-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+  font-size: 1.5rem;
+}
+
+.ethics-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.ethics-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}

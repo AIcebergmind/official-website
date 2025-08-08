@@ -48,38 +48,17 @@
   }
   </script>
 
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/main1.css">
-  <link rel="stylesheet" href="css/sticky-elements.css">
-    <link rel="stylesheet" href="css/breadcrumb-navigation-clean.css">
-    <link rel="stylesheet" href="css/editorial-design.css">
-   <link rel="stylesheet" href="css/special-layouts.css">
-  <link rel="stylesheet" href="css/hero-subhero.css">
-  <link rel="stylesheet" href="css/video-animations.css">
-  <link rel="stylesheet" href="css/sections.css">
- <link rel="stylesheet" href="css/about-section.css">
-  <link rel="stylesheet" href="css/cookie-banner.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/mobile.css">
-
-  <link rel="stylesheet" href="css/gsap-parallax.css">
-
-  
-  <!-- Project Cards -->
-  <link rel="stylesheet" href="css/projects-scroll.css">
-  <link rel="stylesheet" href="css/projects-team-ethics.css">
-  <link rel="stylesheet" href="css/ethics-cards.css">
+  <!-- CSS Files - Single Global Import -->
+  <link rel="stylesheet" href="css/global-styles.css">
+  <link rel="stylesheet" href="css/components/hamburger-menu.css">
   
   <!-- Projects Bounce System -->
   <script src="js/projects-bounce.js" defer></script>
   
-  <!-- Hotspot System -->
-  <link rel="stylesheet" href="css/hotspot.css">
-  
-  
   <!-- Scripts Base -->
-  <script src="js/minimal-breadcrumb-clean.js" defer></script>
+  <script src="js/minimal-breadcrumb-clean.js" defer></script> <!-- Breadcrumb Logic -->
+  <script src="js/components/breadcrumb-component.js" defer></script> <!-- Breadcrumb HTML -->
+  <script src="js/components/follow-us-sticky.js" defer></script> <!-- Follow Us Sticky -->
   
   <script src="js/animations.js" defer></script>
   <script src="js/video-animations.js" defer></script>
@@ -89,52 +68,27 @@
   <script src="js/modules/iceberg-effects.js" type="module" defer></script>
   <script src="js/modules/neural-network.js" type="module" defer></script>
   <script src="js/modules/navigation.js" type="module" defer></script>
-  <script src="js/modules/particles.js" type="module" defer></script>
   
   <!-- Hotspot System -->
   <script src="js/hotspot.js" defer></script>
+  <script src="js/hamburger-menu.js" defer></script>
  
+</head>
 
 <body>
   <canvas id="particles-background"></canvas>
 
-<!-- Breadcrumb Navigation -->
-<div class="breadcrumb-container" id="breadcrumbContainer">
-  <div class="breadcrumb-nav">
-    <div class="breadcrumb-item active" data-section="hero">HOME</div>
-    <div class="breadcrumb-item" data-section="about">ABOUT</div>
-    <div class="breadcrumb-item" data-section="projects" data-has-subs="true">PROJECTS</div>
-    <div class="breadcrumb-item" data-section="team">TEAM</div>
-    <a href="pages/blog.html" class="breadcrumb-item">BLOG</a>
-    <div class="breadcrumb-item" data-section="ethics">ETHICS</div>
-    <div class="breadcrumb-item" data-section="channels" style="border: 1px solid rgba(255, 255, 255, 0.8); padding: 0.2rem 1rem; backdrop-filter: blur(5px);">FOLLOW US</div>
+<!-- Placeholder per il menu mobile generato da JS hybrid -->
+<div id="hamburger-menu-placeholder"></div>
 
-
-
-  </div>
-  
-  <div class="breadcrumb-subsections" id="breadcrumbSubsections">
-    <div class="subsection-item" data-parent="projects" data-subsection="audio-rituals">Audio Rituals</div>
-    <div class="subsection-item" data-parent="projects" data-subsection="nursery-rhymes">Nursery Rhymes</div>
-    <div class="subsection-item" data-parent="projects" data-subsection="specialized-channels">Specialized Channels</div>
-    <div class="subsection-item" data-parent="projects" data-subsection="birth-prep">Birth Prep</div>
-    <div class="subsection-item" data-parent="projects" data-subsection="family-finance">Family Finance</div>
-    <div class="subsection-item" data-parent="projects" data-subsection="parent-360">Parent 360</div>
-  </div>
-</div>
-
-<!-- Menu Hamburger -->
-<div id="hamburgerMenu">
-  <div class="hamburger-line"></div>
-  <div class="hamburger-line"></div>
-  <div class="hamburger-line"></div>
-</div>
+<!-- Breadcrumb Navigation Placeholder -->
+<div id="breadcrumb-placeholder"></div>
 
     <canvas id="iceberg" class="hero-canvas"></canvas>
   <section class="hero hero-editorial" id="hero">
     <div class="hero-content-editorial">
-      <img src="images\logo\AIceberg_mind_logo_color.svg" alt="AIceberg Mind Logo" class="AicebergMindLogo">
-      <p class="editorial-caption">""</p>
+      <img src="images/logo/logowire_2.svg" alt="AIceberg Mind Logo" class="AicebergMindLogo">
+      <p class="editorial-caption">※</p>
       <h1 class="hero-title-editorial"><strong>AI</strong>CEBERG<br>MIND</h1>
       <p class="hero-subtitle-editorial text-compose">Depth is not a feature. It is our nature</p>
     </div>
@@ -328,15 +282,15 @@
       </div>
     </div>
   </div>
-    <!--  PROJECTS CAROUSEL - Due file che scorrono -->
+    <!--  PROJECTS CAROUSEL - Two scrolling files -->
     <div class="horizontal-scroll-wrapper projects-wrapper">
       <div class="horizontal-scroll-content projects-grid">
         
-        <!--  PRIMA FILA - Scorre da sinistra a destra -->
+        <!--  FIRST ROW - Scrolls left to right -->
         <div class="projects-row-1">
           <!-- Project Card 1: Audio Rituals -->
           <div class="project-card project-audio">
-            <!--  Frame borders animati -->
+            <!--  Animated frame borders -->
             <div class="frame-border-top"></div>
             <div class="frame-border-right"></div>
             <div class="frame-border-bottom"></div>
@@ -365,7 +319,7 @@
           
           <!-- Project Card 2: Nursery Rhymes -->
           <div class="project-card project-nursery">
-            <!--  Frame borders animati -->
+            <!--  Animated frame borders -->
             <div class="frame-border-top"></div>
             <div class="frame-border-right"></div>
             <div class="frame-border-bottom"></div>
@@ -394,7 +348,7 @@
           
           <!-- Project Card 3: Specialized Channels -->
           <div class="project-card project-channels">
-            <!--  Frame borders animati -->
+            <!--  Animated frame borders -->
             <div class="frame-border-top"></div>
             <div class="frame-border-right"></div>
             <div class="frame-border-bottom"></div>
@@ -422,11 +376,11 @@
           </div>
         </div>
         
-        <!--  SECONDA FILA - Scorre da destra a sinistra -->
+        <!--  SECOND ROW - Scrolls right to left -->
         <div class="projects-row-2">
           <!-- Project Card 4: Birth Prep Program -->
           <div class="project-card project-birth">
-            <!--  Frame borders animati -->
+            <!--  Animated frame borders -->
             <div class="frame-border-top"></div>
             <div class="frame-border-right"></div>
             <div class="frame-border-bottom"></div>
@@ -455,7 +409,7 @@
           
           <!-- Project Card 5: Family Finance Ed -->
           <div class="project-card project-finance">
-            <!-- Frame borders animati -->
+            <!-- Animated frame borders -->
             <div class="frame-border-top"></div>
             <div class="frame-border-right"></div>
             <div class="frame-border-bottom"></div>
@@ -484,7 +438,7 @@
           
           <!-- Project Card 6: Parent 360 App -->
           <div class="project-card project-app">
-            <!-- Frame borders animati -->
+            <!-- Animated frame borders -->
             <div class="frame-border-top"></div>
             <div class="frame-border-right"></div>
             <div class="frame-border-bottom"></div>
@@ -532,7 +486,7 @@
           
           <div class="channels-slider">
             <div class="channels-track">
-              <!-- Prima serie di loghi -->
+              <!-- First set of logos -->
               <div class="channel-logo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -590,7 +544,7 @@
                 </svg>
                 <span>Spotify</span>
               </div>
-              <!-- Duplica per loop infinito -->
+              <!-- Duplicate for infinite loop -->
               <div class="channel-logo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
@@ -647,11 +601,11 @@
         </div>
         <p class="editorial-body"><span class="drop-cap">W</span>e come from elsewhere. From <strong>archaeological digs</strong>, Alpine hotels, <strong>brief therapies</strong>, and unexpected turns. From the worlds of <strong>motherhood</strong>, tourism, fashion, <strong>subconscious rewiring</strong>, and quiet revolutions.</p>
         
-        <p class="editorial-body">We are a <strong>French and Italian</strong> team, shaped by migrations, intuitions, and everything that doesn't fit in a LinkedIn profile.</p>
+        <p class="editorial-body">We are <strong>French and Italian</strong>, shaped by migrations, intuitions, and everything that doesn't fit in a LinkedIn profile.</p>
       </div>
 
       <div class="content-block">
-        <p class="pullquote">What makes us different is not what we do, but how we think: we create from the <strong>bottom of the iceberg</strong>, not the tip.</p>
+        <p class="pullquote">What makes us different is not what we do, <br>but how we think: we create from the <strong>bottom of the iceberg</strong>, not the tip.</p>
       </div>
 
       <div class="content-block">
@@ -661,7 +615,7 @@
         </div>
         <p class="editorial-body">We've taught at universities, welcomed guests at high altitudes, guided travelers, founded a <strong>dating agency</strong>, practiced <strong>hypnotherapy</strong>, launched startups, accompanied births — and yet we converge on the same question:</p>
         
-        <p class="pullquote"><em>How do you grow a <strong>mind</strong> in a world that changes faster than we can name it?</em></p>
+        <p class="pullquote"><em>How do you grow a <strong>mind</strong> in a world <br> that changes faster than we can name it?</em></p>
       </div>
 
       <div class="content-block">
@@ -777,17 +731,15 @@
   </div>
 </section>
 
-
-
 <!-- FOOTER -->
 <footer class="site-footer" id="blog">
   <div class="footer-container">
-    <!-- Logo a sinistra -->
+    <!-- Logo on left -->
     <div class="footer-logo">
       <img src="images/logo/logotext.svg" alt="AICEBERG MIND" class="footer-logo-img">
     </div>
     
-    <!-- Links a destra -->
+    <!-- Links on right -->
     <div class="footer-links">
       <div class="footer-column">
         <a href="#faq" class="footer-link">FAQ</a>
@@ -853,7 +805,7 @@
     </div>
   </div>
   
-  <!-- Riga bottom copyright -->
+  <!-- Bottom copyright row -->
   <div class="footer-bottom" style="text-align: center;">
     <p>&copy; 2025 AICEBERG MIND. Depth is our nature.</p>
   </div>
@@ -890,6 +842,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <script src="js/cookie-banner.js"></script>
 
+<!-- Placeholder per il menu mobile generato da JS hybrid -->
+  <div id="hamburger-menu-placeholder"></div>
+  <script src="js/components/breadcrumb-component_hybrid.js"></script>
 </body>
 </html>
 

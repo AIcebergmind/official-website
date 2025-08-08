@@ -1,0 +1,339 @@
+/* ═══════════════════════════════════════════════════════════════
+   HOTSPOT SYSTEM - Editorial Interactive Elements
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hotspot Container */
+.hotspot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  z-index: 60;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Hotspot Dot - Aiceberg Mind Pulsar Style */
+.hotspot-dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  animation: hotspot-pulse 2s ease-in-out infinite;
+  box-shadow: 
+    0 0 4px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hotspot-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px;
+  height: 3px;
+  background: rgba(94, 228, 195, 0.8);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* Barrette pulsar ai 4 lati */
+.hotspot-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: 
+    linear-gradient(0deg, transparent 46%, white 48%, white 52%, transparent 54%),
+    linear-gradient(90deg, transparent 46%, white 48%, white 52%, transparent 54%);
+  background-size: 2px 12px, 12px 2px;
+  background-repeat: no-repeat;
+  background-position: center, center;
+  opacity: 0.7;
+  animation: hotspot-bars 2s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* Hotspot Label - Editorial Typography */
+.hotspot-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Hover States */
+.hotspot:hover .hotspot-dot {
+  background: rgba(94, 228, 195, 0.9);
+  border-color: rgba(94, 228, 195, 0.4);
+  box-shadow: 
+    0 0 12px rgba(94, 228, 195, 0.5),
+    0 0 24px rgba(94, 228, 195, 0.3);
+  transform: scale(1.1);
+}
+
+.hotspot:hover .hotspot-label {
+  opacity: 1;
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+/* Animations - Aiceberg Mind Pulsar */
+@keyframes hotspot-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+  }
+  50% { 
+    transform: scale(1.2);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes hotspot-bars {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.9);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes hotspot-ripple {
+  0% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Preview Container - Editorial Lightbox */
+.hotspot-preview {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-180%);
+  pointer-events: none;
+  z-index: 1000;
+  display: none;
+}
+
+.hotspot-preview img {
+  max-width: 400px;
+  max-height: 60vh;
+  border-radius: 0 1.5rem 0 1.5rem;
+  box-shadow: 
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(94, 228, 195, 0.1);
+  backdrop-filter: blur(10px);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Preview Caption */
+.hotspot-preview-caption {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
+}
+
+/* Positioning Classes - Editorial Layout */
+/* Lato destro della colonna centrale */
+.hotspot-right {
+  right: -3rem;
+  top: 2rem;
+}
+
+/* Lato sinistro della colonna centrale */
+.hotspot-left {
+  left: -3rem;
+  top: 2rem;
+}
+
+/* Centro sopra la colonna */
+.hotspot-center {
+  left: 50%;
+  transform: translateX(-50%);
+  top: -2rem;
+}
+
+/* Nuove classi per controllo preciso */
+/* Fuori dalla colonna - destra */
+.hotspot-outside-right {
+  right: -4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Fuori dalla colonna - sinistra */
+.hotspot-outside-left {
+  left: -4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Nel margine - destra */
+.hotspot-margin-right {
+  right: -2rem;
+  top: 2rem;
+}
+
+/* Nel margine - sinistra */
+.hotspot-margin-left {
+  left: -2rem;
+  top: 2rem;
+}
+
+/* Label direction classes */
+.hotspot-label-left {
+  flex-direction: row-reverse;
+}
+
+.hotspot-label-right {
+  flex-direction: row;
+}
+
+/* Inline positioning - per elementi specifici */
+/* A destra dell'elemento (punto vicino, label fuori) */
+.hotspot-inline-right {
+  right: -0.5rem;  /* Punto molto vicino al testo */
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 1.5rem;     /* Gap maggiore per spingere il label fuori */
+}
+
+/* A sinistra dell'elemento (punto vicino, label fuori) */
+.hotspot-inline-left {
+  left: -0.5rem;   /* Punto molto vicino al testo */
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 1.5rem;     /* Gap maggiore per spingere il label fuori */
+  flex-direction: row-reverse; /* Label a sinistra del punto */
+}
+
+/* Sopra l'elemento */
+.hotspot-above {
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Sotto l'elemento */
+.hotspot-below {
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Angolo superiore destro */
+.hotspot-corner-top-right {
+  top: -0.5rem;
+  right: -0.5rem;
+}
+
+/* Angolo superiore sinistro */
+.hotspot-corner-top-left {
+  top: -0.5rem;
+  left: -0.5rem;
+}
+
+/* Posizionamento adiacente con label esterno */
+/* Punto a fianco destro, label ben fuori dalla colonna */
+.hotspot-adjacent-right {
+  right: -0.3rem;  /* Punto attaccato al testo */
+  top: 0;
+  gap: 2rem;       /* Label molto fuori */
+}
+
+/* Punto a fianco sinistro, label ben fuori dalla colonna */
+.hotspot-adjacent-left {
+  left: -0.3rem;   /* Punto attaccato al testo */
+  top: 0;
+  gap: 2rem;       /* Label molto fuori */
+  flex-direction: row-reverse;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hotspot {
+    position: relative;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    margin: var(--spacing-md) 0;
+    justify-content: center;
+  }
+  
+  .hotspot-preview img {
+    max-width: 90vw;
+    max-height: 50vh;
+  }
+  
+  .hotspot-label {
+    font-size: 0.8rem;
+  }
+}
+
+/* Integration with Editorial Layout */
+.editorial-content .hotspot {
+  position: absolute;
+}
+
+.content-block {
+  position: relative;
+}
+
+/* Accessibility */
+.hotspot:focus {
+  outline: 2px solid rgba(94, 228, 195, 0.5);
+  outline-offset: 4px;
+}
+
+.hotspot-dot:focus {
+  box-shadow: 
+    0 0 12px rgba(94, 228, 195, 0.6),
+    0 0 0 4px rgba(94, 228, 195, 0.2);
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+  .hotspot-preview img {
+    filter: brightness(0.9) contrast(1.1);
+  }
+}

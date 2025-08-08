@@ -1,8 +1,19 @@
 // ✅ Minimal Breadcrumb Navigation with Subsections
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", initializeBreadcrumb);
+document.addEventListener("breadcrumbReady", initializeBreadcrumb);
+
+function initializeBreadcrumb() {
   const breadcrumbItems = document.querySelectorAll('.breadcrumb-item');
   const subsectionsContainer = document.getElementById('breadcrumbSubsections');
   const subsectionItems = document.querySelectorAll('.subsection-item');
+  
+  // Skip if breadcrumb elements don't exist yet
+  if (breadcrumbItems.length === 0) {
+    console.log('🍞 Breadcrumb elements not found, waiting...');
+    return;
+  }
+  
+  console.log('🍞 Initializing breadcrumb navigation...');
   
   // Configuration: which sections have subsections
   const sectionsWithSubs = {
@@ -44,36 +55,42 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener('click', (e) => {
       const sectionId = item.getAttribute('data-section');
       
-      // Handle direct links (like blog) - let them work normally
-      if (!sectionId && item.tagName === 'A' && item.href) {
+      // Handle direct links (like blog or subpage navigation) - let them work normally
+      if (item.tagName === 'A' && item.href) {
+        console.log(`🔗 Following link: ${item.href}`);
         return; // Let the link work normally
       }
       
-      e.preventDefault();
-      const targetElement = document.getElementById(sectionId);
-      
-      if (targetElement) {
-        // Remove active from all main items
-        breadcrumbItems.forEach(i => i.classList.remove('active'));
-        // Add active to clicked item
-        item.classList.add('active');
+      // Handle section navigation (only works on main page)
+      if (sectionId) {
+        e.preventDefault();
+        const targetElement = document.getElementById(sectionId);
         
-        // Remove active from all subsections
-        subsectionItems.forEach(i => i.classList.remove('active'));
-        
-        // Update subsections visibility
-        updateSubsections(sectionId);
-        
-        // Smooth scroll with offset for fixed breadcrumb
-        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - 100; // 100px offset for breadcrumb
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        console.log(`🚀 Navigating to: ${sectionId} with 100px offset`);
+        if (targetElement) {
+          // Remove active from all main items
+          breadcrumbItems.forEach(i => i.classList.remove('active'));
+          // Add active to clicked item
+          item.classList.add('active');
+          
+          // Remove active from all subsections
+          subsectionItems.forEach(i => i.classList.remove('active'));
+          
+          // Update subsections visibility
+          updateSubsections(sectionId);
+          
+          // Smooth scroll with offset for fixed breadcrumb
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - 100; // 100px offset for breadcrumb
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+          
+          console.log(`🚀 Navigating to: ${sectionId} with 100px offset`);
+        } else {
+          console.warn(`⚠️ Section not found: ${sectionId} (probably on subpage)`);
+        }
       }
     });
   });
@@ -81,10 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Subsection click handlers
   subsectionItems.forEach(item => {
     item.addEventListener('click', (e) => {
-      e.preventDefault();
-      
       const subsectionId = item.getAttribute('data-subsection');
       const parentSection = item.getAttribute('data-parent');
+      
+      // Handle direct links (for subpages) - let them work normally  
+      if (item.tagName === 'A' && item.href) {
+        console.log(`🔗 Following subsection link: ${item.href}`);
+        return; // Let the link work normally
+      }
+      
+      // Handle subsection navigation (only works on main page)
+      e.preventDefault();
       
       // Remove active from all subsections
       subsectionItems.forEach(i => i.classList.remove('active'));
@@ -102,9 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
           top: offsetPosition,
           behavior: 'smooth'
         });
+        
+        console.log(`🎯 Navigating to subsection: ${parentSection}/${subsectionId}`);
+      } else {
+        console.warn(`⚠️ Parent section not found: ${parentSection} (probably on subpage)`);
       }
-      
-      console.log(`🎯 Navigating to subsection: ${parentSection}/${subsectionId}`);
     });
   });
   
@@ -157,4 +183,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 100);
     }
   });
-});
+}

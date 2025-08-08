@@ -1,4 +1,0 @@
-  <!-- 🚨 CSS DEBUG - TEMPORANEO -->
-  <style>
-    * { border: 2px solid red !important; background: rgba(255,0,0,0.05) !important; }
-  </style>
