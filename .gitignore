@@ -1,0 +1,24 @@
+# Ignora tutto
+*
+
+# Mantieni file e cartelle necessarie
+!.gitignore
+!index.html
+!README.md
+!start_server.bat
+
+# Cartelle da mantenere
+!css/
+!js/
+!images/
+!pages/
+!json/
+!docs/
+
+# Includi anche i file dentro le cartelle
+!css/**
+!js/**
+!images/**
+!pages/**
+!json/**
+!docs/**
