@@ -1,10 +1,32 @@
+/* Logo hover switch effect (ex-index.html) */
+.logo-hover-switch {
+  filter: invert(1) brightness(2);
+  transition: filter 0.2s;
+}
+.logo-hover-switch:hover {
+  content: url('images/logo/AIceberg_mind_logo_color.svg');
+  filter: none;
+}
+
+/* Hero logo scroll effect (ex-index.html) */
+.hero-logo-scroll {
+  width: 180px;
+  max-width: 40vw;
+  transition: width 0.35s cubic-bezier(.4,1.4,.6,1), max-width 0.35s cubic-bezier(.4,1.4,.6,1);
+  display: block;
+  margin: 0 auto 1.2rem auto;
+}
+.hero-logo-scroll.shrink {
+  width: 80px;
+  max-width: 18vw;
+}
 /* === HERO & SUBHERO SECTIONS CSS - Editorial  === */
 
 /* Logo AIceberg Mind sopra il titolo Hero */
 .AicebergMindLogo {
   position: fixed;
   display: block;
-  width: 180px;
+  width: 280px;
   height: auto;
   z-index: 2003;
   opacity: 1;
