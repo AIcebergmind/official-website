@@ -87,7 +87,7 @@
     <canvas id="iceberg" class="hero-canvas"></canvas>
   <section class="hero hero-editorial" id="hero">
     <div class="hero-content-editorial">
-      <img src="images/logo/logowire_2.svg" alt="AIceberg Mind Logo" class="AicebergMindLogo">
+  <img src="images/logo/AIceberg_mind_logo_gray.svg" alt="AIceberg Mind Logo" class="AicebergMindLogo logo-hover-switch">
       <p class="editorial-caption">※</p>
       <h1 class="hero-title-editorial"><strong>AI</strong>CEBERG<br>MIND</h1>
       <p class="hero-subtitle-editorial text-compose">Depth is not a feature. It is our nature</p>
@@ -736,7 +736,7 @@
   <div class="footer-container">
     <!-- Logo on left -->
     <div class="footer-logo">
-      <img src="images/logo/logotext.svg" alt="AICEBERG MIND" class="footer-logo-img">
+  <img src="images/logo/AIceberg_mind_logo_gray.svg" alt="AICEBERG MIND" class="footer-logo-img logo-hover-switch">
     </div>
     
     <!-- Links on right -->
@@ -845,6 +845,15 @@
 <!-- Placeholder per il menu mobile generato da JS hybrid -->
   <div id="hamburger-menu-placeholder"></div>
   <script src="js/components/breadcrumb-component_hybrid.js"></script>
+<style>
+  .logo-hover-switch {
+    transition: filter 0.2s;
+  }
+  .logo-hover-switch:hover {
+    content: url('images/logo/AIceberg_mind_logo_color.svg');
+    filter: drop-shadow(0 2px 8px #b6e0ff80);
+  }
+</style>
 </body>
 </html>
 

@@ -27,7 +27,7 @@ function generateMobileMenuHTML() {
     </button>
     <nav class="hamburger-slider-menu" aria-label="Menu mobile" id="hamburgerSliderMenuHybrid">
       <div class="hamburger-logo-container">
-        <img src="images/logo/logo-01.svg" alt="AIceberg Mind Logo" class="hamburger-logo" />
+  <img src="images/logo/AIceberg_mind_logo_gray.svg" alt="AIceberg Mind Logo" class="hamburger-logo logo-hover-switch" />
       </div>
       <button class="hamburger-menu-close" aria-label="Chiudi menu" id="closeHamburgerMenuHybrid">&#10005;</button>
       <ul class="hamburger-menu-list">
