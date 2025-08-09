@@ -11,14 +11,4 @@ document.addEventListener('DOMContentLoaded', function() {
       logo.classList.remove('shrink');
     }
   });
-
-  // Hover effect: swap src between gray and color
-  var graySrc = 'images/logo/AIceberg_mind_logo_gray.svg';
-  var colorSrc = 'images/logo/AIceberg_mind_logo_color.svg';
-  logo.addEventListener('mouseenter', function() {
-    logo.src = colorSrc;
-  });
-  logo.addEventListener('mouseleave', function() {
-    logo.src = graySrc;
-  });
 });
