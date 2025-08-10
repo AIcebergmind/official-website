@@ -404,7 +404,11 @@
     line-height: 1.2;
   }
   
-  .horizon-line {
-    top: 68% !important;
+    .horizon-line {
+      position: absolute;
+      top: 46%;
+      left: 10%;
+      width: 80vw;
+      transform: translateX(-50%);
   }
 }
