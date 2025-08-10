@@ -1,14 +1,4 @@
-@media (max-width: 700px) {
-  .follow-us-sticky {
-    display: none !important;
-  }
-}
-/* ========================================
-   STICKY ELEMENTS - AICEBERG MIND EDITORIAL
-   Support button with editorial design system
-   ======================================== */
-
-/* ===== FOLLOW US STICKY BUTTON - BREADCRUMB STYLE WITH SOCIAL HOVER ===== */
+/* ===== FOLLOW US STICKY BUTTON - DESKTOP VISIBILITY & INTERACTION ===== */
 .follow-us-sticky {
   position: fixed;
   top: 2rem;
@@ -47,7 +37,6 @@
   transition: transform 0.2s ease;
 }
 
-/* Social Icons Dropdown */
 .social-dropdown {
   position: absolute;
   top: 100%;
@@ -71,53 +60,85 @@
   visibility: visible;
   transform: translateY(0);
 }
+@media (max-width: 700px) {
+  .follow-us-sticky {
+    display: none !important;
+  }
+}
+/* ========================================
+   STICKY ELEMENTS - AICEBERG MIND EDITORIAL
+   Support button with editorial design system
+   ======================================== */
 
+
+/* ===== SOCIAL ICONS - UNIFICATED BASE ===== */
 .social-icon {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0.75rem;
-  color: var(--text-primary, rgba(255, 255, 255, 0.9));
+  justify-content: center;
+  color: #fff;
+  background: #222;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.3rem;
+  transition: background 0.2s, color 0.2s;
   text-decoration: none;
+  border: none;
+  /* Specific padding for sticky elements will be set in context if needed */
+}
+.social-icon:hover {
+  background: #5ee4c3;
+  color: #222;
+}
+.social-icon-symbol {
+  width: 22px;
+  height: 22px;
+  display: block;
+  margin-right: 0.5rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.social-icon:hover .social-icon-symbol {
+  opacity: 1;
+}
+.social-icon-text {
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+/* CONTEXTUAL OVERRIDES FOR STICKY ELEMENTS */
+.social-dropdown .social-icon {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  color: var(--text-primary, rgba(255, 255, 255, 0.9));
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: all 0.2s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
 }
-
-.social-icon:last-child {
+.social-dropdown .social-icon:last-child {
   border-bottom: none;
 }
-
-.social-icon:hover {
+.social-dropdown .social-icon:hover {
   background: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 1);
   transform: translateX(2px);
 }
-
-.social-icon-symbol {
-  margin-right: 0.5rem;
+.social-dropdown .social-icon-symbol {
   width: 14px;
   height: 14px;
-  flex-shrink: 0;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.social-icon:hover .social-icon-symbol {
-  opacity: 1;
-}
-
-.social-icon-text {
-  font-size: 0.65rem;
-  opacity: 0.9;
+  margin-right: 0.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .follow-us-sticky {
-    bottom: 2rem;
+    bottom: 10rem;
     top: auto;
     right: 1rem;
   }
@@ -144,7 +165,7 @@
 
 @media (max-width: 480px) {
   .follow-us-sticky {
-    bottom: 1.5rem;
+    bottom: 3.5rem;
     right: 0.8rem;
   }
   

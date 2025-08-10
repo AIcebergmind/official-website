@@ -1,15 +1,4 @@
-/* VISIBILITÀ DESKTOP vs MOBILE */
-@media (max-width: 768px) {
-  .breadcrumb-container {
-    display: none !important;
-  }
-}
-@media (min-width: 769px) {
-  .hamburger-menu-btn,
-  .hamburger-slider-menu {
-    display: none !important;
-  }
-}
+
 /* 🍞 MINIMAL BREADCRUMB NAVIGATION */
 /* Clean breadcrumb navigation with subsections */
 
@@ -156,5 +145,18 @@
   
   .subsection-item {
     font-size: 0.75rem;
+  }
+}
+
+/* VISIBILITÀ DESKTOP vs MOBILE */
+@media (max-width: 768px) {
+  .breadcrumb-container {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .hamburger-menu-btn,
+  .hamburger-slider-menu {
+    display: none;
   }
 }
