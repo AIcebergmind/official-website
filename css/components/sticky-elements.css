@@ -1,3 +1,8 @@
+@media (max-width: 700px) {
+  .follow-us-sticky {
+    display: none !important;
+  }
+}
 /* ========================================
    STICKY ELEMENTS - AICEBERG MIND EDITORIAL
    Support button with editorial design system

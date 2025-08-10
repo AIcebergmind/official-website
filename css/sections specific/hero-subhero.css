@@ -285,12 +285,21 @@
    RESPONSIVE — MOBILE (≤700px)
    =============================== */
 
+/* Nascondi la freccia scroll-down su desktop */
+.scroll-down-arrow {
+  display: none;
+}
+
 @media (max-width:700px) {
+  .scroll-down-arrow {
+    display: block;
+  }
+
   /* Freccia scroll-down animata solo su mobile */
   .scroll-down-arrow {
     position: absolute;
     left: 50%;
-    bottom: 2.5vh;
+    bottom: 6.5vh;
     transform: translateX(-50%);
     width: 36px;
     height: 36px;
@@ -315,6 +324,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+
   /* Centra e limita la larghezza degli elementi principali dell'hero su mobile */
   .hero.hero-editorial .hero-title-editorial,
   .hero.hero-editorial .hero-title,
@@ -330,7 +340,7 @@
   .subtitle-break {
     display: inline;
   }
-  /* Logo AIceberg Mind: grande e centrato sopra il testo all'apertura */
+
   .AicebergMindLogo.hero-logo-scroll {
     width: 60vw;
     max-width: 320px;
@@ -393,7 +403,7 @@
     margin: 0 auto 2.2rem auto;
     line-height: 1.2;
   }
-  /* Porta più in basso la horizon line su mobile */
+  
   .horizon-line {
     top: 68% !important;
   }
