@@ -286,6 +286,25 @@
    =============================== */
 
 @media (max-width:700px) {
+  /* Freccia scroll-down animata solo su mobile */
+  .scroll-down-arrow {
+    position: absolute;
+    left: 50%;
+    bottom: 2.5vh;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 36px;
+    z-index: 4000;
+    fill: var(--accent-color, #5ee4c3);
+    opacity: 0.85;
+    animation: arrowPulse 1.2s infinite alternate;
+    pointer-events: none;
+  }
+  @keyframes arrowPulse {
+    0% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+    60% { opacity: 1; transform: translateX(-50%) scale(1.18); }
+    100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  }
   /* Forza il centraggio del sottotitolo hero su mobile */
   .hero-content-editorial {
     text-align: center;
