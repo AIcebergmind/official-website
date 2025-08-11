@@ -2,18 +2,29 @@
 @media (max-width: 768px) {
   .mobile-blur-overlay {
     display: block;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 2;
+    z-index: 1;
     pointer-events: none;
     background: rgba(0,0,0,0.22);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    /* Only show from subhero and below: hide above */
-    /* We'll hide it with JS above subhero if needed, or set top dynamically if you want a perfect cutoff */
+  }
+  #particles-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    display: block;
+  }
+  body > *:not(#particles-background):not(.mobile-blur-overlay) {
+    position: relative;
+    z-index: 2;
   }
 }
 
