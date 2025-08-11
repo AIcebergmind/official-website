@@ -231,12 +231,12 @@
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 1.5rem;
   }
 
   .footer-links {
-    justify-content: center;
+    justify-content: left;
   }
 
   .footer-column {
@@ -251,7 +251,7 @@
   .faq-header {
     flex-direction: column;
     gap: 1rem;
-    text-align: center;
+    text-align: left;
   }
 
   .faq-header h3 {
