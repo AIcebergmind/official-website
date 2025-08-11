@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>Iceberg GLB Viewer — Test</title>
+  <style>
+    :root{
+      --bg: #0b0b0d;
+      --fg: #e8e8ea;
+      --accent: #5EE4C3;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--fg);
+      background:var(--bg);
+      font: 500 16px/1.45 var(--sans);
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
+    }
+
+    header{
+      padding: 12px 16px;
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    header .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent);
+      flex: 0 0 auto;
+    }
+    header h1{
+      margin:0; font:700 16px/1 var(--sans); letter-spacing:.2px;
+    }
+    header .path{
+      margin-left:auto; opacity:.7; font-size:.9rem;
+    }
+
+    .model-viewport{
+      position: relative;
+      width: 100%;
+      height: 60vh;       /* desktop first */
+      max-height: 620px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin: 16px;
+      background: radial-gradient(1200px 400px at 50% 110%, rgba(94,228,195,.08), transparent 60%);
+    }
+    .model-viewport canvas{
+      display:block;
+      width:100%;
+      height:100%;
+      touch-action:none; /* better OrbitControls on mobile */
+    }
+
+    .model-loader{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font: 600 0.95rem/1 var(--sans);
+      color: rgba(255,255,255,.92);
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.18));
+      backdrop-filter: blur(6px);
+      z-index:2;
+      pointer-events:none;
+    }
+
+    /* Debug canvas overlay */
+    .model-viewport.debug canvas{ outline: 2px dashed rgba(94,228,195,.85); }
+    .model-viewport.debug::after{
+      content: 'canvas';
+      position: absolute; top: .45rem; left: .55rem;
+      font: 700 12px/1 var(--sans);
+      color: rgba(255,255,255,.92);
+      background: rgba(0,0,0,.45);
+      padding: .22rem .45rem;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Mobile ≤768px */
+    @media (max-width:768px){
+      .model-viewport{ height: 58vh; margin: 12px; }
+      header{ padding: 10px 12px; }
+      header .path{ display:none; }
+    }
+
+    footer{
+      padding: 10px 16px 20px;
+      opacity:.7;
+      font-size:.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="dot" aria-hidden="true"></span>
+    <h1>Iceberg GLB Viewer — Test</h1>
+    <div class="path">Looking for: <code>./iceberg.glb</code></div>
+  </header>
+
+  <section class="model-viewport" id="iceberg-viewport">
+    <div class="model-loader" id="iceberg-loader">Loading… 0%</div>
+  </section>
+
+  <footer>
+    Tip: tap/click sul canvas per mettere in pausa/riprendere la rotazione. Imposta <code>DEBUG = false</code> nel JS per nascondere i bordi di debug.
+  </footer>
+<!-- Import map: dice al browser dove trovare "three" e le addons -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+  <!-- Viewer JS (module, CDN imports) -->
+  <script type="module">
+   // === /js/iceberg-viewer.js (ES module) ===
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// Se il GLB fosse compresso, sblocca i decoder:
+// import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+// import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+
+const MODEL_URL = './iceberg.glb'; // <-- se test.html e il .glb sono nella stessa cartella
+const DEBUG = true;                 // metti a false in produzione
+const LOAD_TIMEOUT_MS = 15000;
+
+const container = document.getElementById('iceberg-viewport');
+const loaderEl  = document.getElementById('iceberg-loader');
+if (!container) throw new Error('Missing #iceberg-viewport in DOM');
+
+let renderer, scene, camera, controls, model, boxHelper, axesHelper;
+
+// Progress “smooth” (funziona anche senza Content-Length)
+const prog = SmoothProgress(
+  (p) => { if (loaderEl) loaderEl.textContent = 'Loading… ' + Math.round(p) + '%'; },
+  ()  => fadeOutLoader()
+);
+
+init();
+preflightThenLoad(MODEL_URL);
+render();
+
+function init(){
+  if (DEBUG) container.classList.add('debug');
+
+  // Renderer
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true,
+    powerPreference: 'high-performance'
+  });
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+  resizeRenderer();
+  container.appendChild(renderer.domElement);
+
+  // Scene
+  scene = new THREE.Scene();
+
+  // Camera
+  const fov = match('(max-width: 768px)') ? 38 : 32;
+  camera = new THREE.PerspectiveCamera(fov, aspect(), 0.01, 2000);
+  camera.position.set(0.6, 0.4, 2.2);
+
+  // Luci “sicure”
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x333333, 1.1));
+  const dir1 = new THREE.DirectionalLight(0xffffff, 1.0);
+  dir1.position.set(2, 2.5, 2.5);
+  scene.add(dir1);
+  const fill = new THREE.DirectionalLight(0xffffff, 0.4);
+  fill.position.set(-2, 1.5, -2);
+  scene.add(fill);
+
+  // Controls
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.07;
+  controls.enablePan = false;
+  controls.target.set(0, 0.35, 0);
+
+  // Helpers debug
+  if (DEBUG) {
+    axesHelper = new THREE.AxesHelper(0.5);
+    scene.add(axesHelper);
+  }
+
+  // Events
+  window.addEventListener('resize', onResize);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) autoRotate.set(false);
+  });
+  container.addEventListener('pointerdown', () => autoRotate.toggle());
+
+  // Pausa quando esce dalla viewport
+  const io = new IntersectionObserver(([entry]) => {
+    autoRotate.set(entry.isIntersecting);
+  }, { threshold: 0.1 });
+  io.observe(container);
+}
+
+async function preflightThenLoad(url){
+  // HEAD check: se CORS blocca o manca HEAD, proseguiamo comunque
+  try {
+    const head = await fetch(url, { method: 'HEAD' });
+    if (!head.ok) throw new Error('HTTP ' + head.status);
+  } catch (e) {
+    console.warn('[GLB HEAD check warning]', e);
+  }
+  await loadModel(url);
+}
+
+function loadModel(url){
+  return new Promise((resolve, reject) => {
+    const loader = new GLTFLoader();
+    // Decoders se servono:
+    // const draco = new DRACOLoader();
+    // draco.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+    // loader.setDRACOLoader(draco);
+    // loader.setMeshoptDecoder(MeshoptDecoder);
+
+    const slowTimer = setTimeout(() => {
+      if (loaderEl) loaderEl.textContent = 'Loading… (rete lenta?)';
+    }, LOAD_TIMEOUT_MS);
+
+    loader.load(
+      url,
+      (gltf) => {
+        clearTimeout(slowTimer);
+
+        model = gltf.scene || (gltf.scenes && gltf.scenes[0]);
+        // Forza un materiale visibile e double-sided (evita problemi di normali/trasparenze)
+        applyFallbackMaterial(model, 0x5EE4C3, true);
+        normalizeAndCenter(model, 1.6); // target un filo più grande
+        scene.add(model);
+
+        // Fit aggressivo camera/controls
+        fitCameraToObject(camera, model, controls, 1.35);
+
+        // Box helper magenta
+        if (DEBUG) {
+          boxHelper = new THREE.Box3Helper(new THREE.Box3().setFromObject(model), 0xff00ff);
+          scene.add(boxHelper);
+        }
+
+        prog.to(100);
+        resolve();
+      },
+      (evt) => onProgress(evt),
+      (err) => {
+        if (loaderEl) loaderEl.textContent = 'Errore nel caricamento del modello';
+        console.error('[GLB load error]', err);
+        setTimeout(() => fadeOutLoader(), 1000);
+        reject(err);
+      }
+    );
+  });
+}
+
+function onProgress(evt){
+  if (evt && evt.total) {
+    const p = (evt.loaded / evt.total) * 100;
+    prog.to(Math.max(5, p));
+  } else {
+    prog.to(90); // fallback “smooth” quando total è sconosciuto
+  }
+}
+
+function applyFallbackMaterial(obj, color, force = false){
+  obj.traverse((c) => {
+    if (c.isMesh) {
+      // forza materiale visibile
+      if (force || !c.material || (Array.isArray(c.material) && c.material.length === 0)) {
+        c.material = new THREE.MeshStandardMaterial({
+          color,
+          metalness: 0.1,
+          roughness: 0.85,
+          side: THREE.DoubleSide // evita facce invisibili per normali invertite
+        });
+      }
+      const mats = Array.isArray(c.material) ? c.material : [c.material];
+      for (let i=0;i<mats.length;i++){
+        const m = mats[i];
+        if (m && m.map) m.map.colorSpace = THREE.SRGBColorSpace;
+        if (m && m.emissiveMap) m.emissiveMap.colorSpace = THREE.SRGBColorSpace;
+        if (m && m.transparent && m.opacity === 0) m.opacity = 1; // evita invisibilità
+      }
+      c.castShadow = c.receiveShadow = false;
+      // opzionale: disattiva frustum culling se vedi sparizioni strane
+      // c.frustumCulled = false;
+    }
+  });
+}
+
+function normalizeAndCenter(obj, targetSize = 1.2){
+  const box = new THREE.Box3().setFromObject(obj);
+  const size = new THREE.Vector3(); box.getSize(size);
+  const center = new THREE.Vector3(); box.getCenter(center);
+
+  const maxDim = Math.max(size.x, size.y, size.z) || 1;
+  const scale = targetSize / maxDim;
+  obj.scale.setScalar(scale);
+
+  // Ricalcola e centra
+  box.setFromObject(obj);
+  box.getCenter(center);
+  obj.position.sub(center);
+
+  // Solleva un po’ se la base sta sotto 0
+  const minY = box.min.y * scale;
+  if (minY < 0) obj.position.y -= minY * 0.25;
+}
+
+function fitCameraToObject(camera, object, controls, offset = 1.2){
+  const box = new THREE.Box3().setFromObject(object);
+  const size = new THREE.Vector3(); box.getSize(size);
+  const center = new THREE.Vector3(); box.getCenter(center);
+
+  const maxSize = Math.max(size.x, size.y, size.z) || 1;
+  const fitHeightDistance = maxSize / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov * 0.5)));
+  const fitWidthDistance  = fitHeightDistance / camera.aspect;
+  const distance = offset * Math.max(fitHeightDistance, fitWidthDistance);
+
+  // Mantieni la direzione attuale
+  const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+  camera.position.copy(center).add(dir.multiplyScalar(distance));
+
+  camera.near = Math.max(distance / 100, 0.01);
+  camera.far  = Math.max(distance * 100, 10);
+  camera.updateProjectionMatrix();
+
+  controls.target.copy(center);
+  controls.maxDistance = distance * 4;
+  controls.minDistance = distance * 0.3;
+  controls.update();
+}
+
+const autoRotate = (() => {
+  let on = true;
+  return {
+    step: (obj) => { if (on && obj) obj.rotation.y += 0.003; },
+    toggle: () => (on = !on),
+    set: (v) => (on = !!v)
+  };
+})();
+
+function onResize(){
+  resizeRenderer();
+  camera.aspect = aspect();
+  camera.updateProjectionMatrix();
+}
+
+function resizeRenderer(){
+  const w = container.clientWidth || container.offsetWidth || 300;
+  const h = container.clientHeight || 300;
+  renderer.setSize(w, h, false);
+}
+
+function aspect(){
+  const w = container.clientWidth || container.offsetWidth || 300;
+  const h = container.clientHeight || 300;
+  return Math.max(w / h, 0.0001);
+}
+
+function fadeOutLoader(){
+  if (!loaderEl) return;
+  loaderEl.style.transition = 'opacity .35s ease';
+  loaderEl.style.opacity = 0;
+  setTimeout(() => { loaderEl.style.display = 'none'; }, 400);
+}
+
+// Progress helper (easing + clamp)
+function SmoothProgress(onUpdate, onDone){
+  let current = 0;
+  let target = 0;
+  let raf = null;
+
+  function step(){
+    const delta = target - current;
+    if (Math.abs(delta) < 0.1) {
+      current = target;
+    } else {
+      current += delta * 0.15 + 0.1; // easing
+    }
+    onUpdate && onUpdate(current);
+
+    if (current >= 99.9 && target >= 100) {
+      cancelAnimationFrame(raf);
+      raf = null;
+      onDone && onDone();
+      return;
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  return {
+    to(n){
+      target = Math.min(100, Math.max(target, n));
+      if (!raf) raf = requestAnimationFrame(step);
+    }
+  };
+}
+
+function render(){
+  requestAnimationFrame(render);
+  if (model) autoRotate.step(model);
+  controls.update();
+  renderer.render(scene, camera);
+
+  if (DEBUG && boxHelper && model){
+    boxHelper.box.setFromObject(model);
+    boxHelper.updateMatrixWorld(true);
+  }
+}
+
+// Utils
+function match(q){ return window.matchMedia(q).matches; }
+
+  </script>
+</body>
+</html>

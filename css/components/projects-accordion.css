@@ -1,0 +1,161 @@
+/* Projects Accordion - Mobile Only */
+@media (max-width: 700px) {
+  .projects-accordion {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .accordion-item {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.2rem 1.1rem 1.2rem;
+    cursor: pointer;
+    background: rgba(255,255,255,0.04);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+  }
+  .accordion-title {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    font-family: var(--font-display, 'Inter', sans-serif);
+    letter-spacing: 0.01em;
+  }
+  .accordion-progress {
+    margin-left: 1rem;
+    min-width: 70px;
+    font-size: 0.95rem;
+    color: #5ee4c3;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--font-display, 'Inter', sans-serif);
+  }
+  .accordion-bar {
+    width: 48px;
+    height: 6px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-left: 0.5em;
+  }
+  .accordion-bar-fill {
+    height: 100%;
+    background: var(--gradient-main, linear-gradient(90deg, #5ee4c3, #00d4ff));
+    border-radius: 3px;
+    transition: width 0.3s;
+  }
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    background: transparent;
+    transition: max-height 0.35s cubic-bezier(.4,2,.6,1), padding 0.3s;
+    padding: 0 1.2rem;
+  }
+  .accordion-item.open .accordion-content {
+    padding: 1.1rem 1.2rem 1.2rem 1.2rem;
+    max-height: 500px;
+    transition: max-height 0.45s cubic-bezier(.4,2,.6,1), padding 0.3s;
+  }
+
+  /* Project features/tags */
+  .project-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: var(--spacing-xs, 0.5rem) 0;
+    align-content: flex-start;
+    max-height: 50px;
+    overflow: hidden;
+  }
+  .feature-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    line-height: 1.2;
+    background: rgba(94, 228, 195, 0.12);
+    color: #5ee4c3;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.1rem;
+  }
+
+  /* Project button */
+  .project-btn {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    margin-top: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-light, rgba(255,255,255,0.08));
+    color: var(--text-primary, #fff);
+    font-family: var(--font-display, 'Inter', sans-serif);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .project-btn:hover {
+    border-color: #5ee4c3;
+    background: rgba(94, 228, 195, 0.08);
+    color: #5ee4c3;
+  }
+
+  /* Hover/active effect for accordion */
+  .accordion-item.open,
+  .accordion-item:focus-within,
+  .accordion-item:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  }
+
+  /* Animated border effect (like desktop card) */
+  .accordion-item::before,
+  .accordion-item::after {
+    content: '';
+    position: absolute;
+    background: rgba(255,255,255,0.8);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .accordion-item::before {
+    top: 0; left: 0; right: 0; height: 1px;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  .accordion-item::after {
+    top: 0; bottom: 0; right: 0; width: 1px;
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+  .accordion-item.open::before,
+  .accordion-item.open::after,
+  .accordion-item:hover::before,
+  .accordion-item:hover::after {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+    transition-delay: 0s;
+  }
+}

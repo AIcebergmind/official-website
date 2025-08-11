@@ -837,3 +837,85 @@
   line-height: 1.6;
   color: var(--text-secondary);
 }
+
+/* Fix Channels section container width/padding on mobile */
+@media (max-width: 767.98px) {
+  .editorial-container#channels {
+  padding-left: var(--spacing-sm) !important;
+  padding-right: var(--spacing-sm) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  }
+}
+/* === CHANNELS SECTION MOBILE STYLES === */
+@media (max-width: 767.98px) {
+  .channels-slider {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  background: rgba(255,255,255,0.03);
+  border-radius: 1.2rem;
+  padding: 1rem 0.5rem;
+  margin: 1.5rem 0 2.5rem 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  height: auto;
+  min-height: 90px;
+  }
+  .channels-slider::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .channels-track {
+  display: flex;
+  gap: 1.2rem;
+  height: auto;
+  align-items: stretch;
+  animation: none;
+  flex-wrap: nowrap;
+  min-width: max-content;
+  }
+  .channel-logo {
+  min-width: 90px;
+  max-width: 110px;
+  width: 90px;
+  height: 90px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.2rem;
+  box-shadow: 0 1px 6px rgba(94,228,195,0.08);
+  border: 1px solid rgba(94,228,195,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+  position: relative;
+  }
+  .channel-logo svg {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 0.3rem;
+    color: var(--glacier-blue, #5EE4C3);
+    stroke: currentColor;
+    opacity: 0.85;
+    transition: color 0.2s;
+  }
+  .channel-logo span {
+    font-size: 0.78rem;
+    color: var(--glacier-blue, #5EE4C3);
+    font-weight: 500;
+    opacity: 0.9;
+    margin-top: 0.1rem;
+    letter-spacing: 0.01em;
+  }
+  .channel-logo:active,
+  .channel-logo:focus {
+    background: rgba(94,228,195,0.13);
+    box-shadow: 0 2px 12px rgba(94,228,195,0.13);
+    outline: none;
+  }
+  /* Hide duplicate logos for infinite loop on mobile */
+  .channels-track .channel-logo:nth-child(n+9) {
+    display: none;
+  }
+}

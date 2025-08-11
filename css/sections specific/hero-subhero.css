@@ -1,3 +1,8 @@
+@media (max-width:700px) {
+  #iceberg.hero-canvas {
+    display: none !important;
+  }
+}
 /* Permette di andare a capo solo su mobile con <br class="subtitle-break"> */
 .subtitle-break {
   display: none;
@@ -406,9 +411,74 @@
   
     .horizon-line {
       position: absolute;
-      top: 46%;
+      top: 46l%;
       left: 10%;
       width: 80vw;
       transform: translateX(-50%);
   }
+}
+
+
+
+
+
+
+
+
+
+.model-viewport{
+  position: relative;
+  width: 100%;
+  height: 58vh;          /* comodo per mobile */
+  max-height: 520px;     /* evita canvas troppo grande */
+  overflow: hidden;
+}
+
+.model-viewport canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  touch-action:none;     /* evita zoom pinch che litiga con OrbitControls */
+}
+
+.model-loader{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font: 500 0.95rem/1.2 var(--font-sans, system-ui);
+  color: rgba(255,255,255,.9);
+  background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  backdrop-filter: blur(6px);
+  z-index:2;
+  pointer-events:none;
+}
+
+/* Desktop prima… */
+@media (min-width: 769px){
+  .model-viewport{ height: 60vh; }
+}
+
+/* …poi mobile */
+@media (max-width: 768px){
+  .model-viewport{ height: 58vh; }
+}
+
+
+
+/* Debug canvas/container: bordo + overlay test */
+.model-viewport.debug canvas{
+  outline: 2px dashed rgba(94,228,195,.85);
+}
+.model-viewport.debug::after{
+  content: 'canvas';
+  position: absolute;
+  top: .4rem; left: .5rem;
+  font: 600 12px/1.2 system-ui, sans-serif;
+  color: rgba(255,255,255,.9);
+  background: rgba(0,0,0,.45);
+  padding: .2rem .4rem;
+  border-radius: 4px;
+  pointer-events: none;
 }

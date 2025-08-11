@@ -1,3 +1,21 @@
+/* Nascondi la griglia progetti su mobile, mostra solo l'accordion */
+@media (max-width: 700px) {
+  .projects-wrapper { display: none !important; }
+  .projects-accordion { display: block !important; }
+}
+@media (min-width: 701px) {
+  .projects-wrapper { display: flex !important; }
+  .projects-accordion { display: none !important; }
+}
+/* Show/hide desktop and mobile projects sections */
+@media (max-width: 700px) {
+  .projects-desktop { display: none !important; }
+  .projects-accordion { display: block !important; }
+}
+@media (min-width: 701px) {
+  .projects-desktop { display: block !important; }
+  .projects-accordion { display: none !important; }
+}
 /* === BOUNCE SLIDE SYSTEM - CONTAINER LIMITATO === */
 
 .projects-wrapper {

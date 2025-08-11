@@ -1,3 +1,4 @@
+
 /*
  * GLOBAL STYLES - AIceberg Mind
  * Master CSS file that imports all stylesheets in the correct loading order
@@ -26,6 +27,7 @@
 @import url('components/footer.css');
 @import url('components/hotspot.css');
 @import url('components/projects-scroll.css');
+@import url('components/projects-accordion.css');
 
 /* ========================================
    LAYOUTS & VARIABLES
@@ -40,6 +42,7 @@
 @import url('sections specific/about-section.css');
 @import url('sections specific/projects-team-ethics.css');
 @import url('sections specific/ethics-cards.css');
+
 
 /* ========================================
    SUBPAGES & BLOG STYLES
