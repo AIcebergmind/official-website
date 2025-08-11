@@ -1,3 +1,27 @@
+/* === MOBILE PARTICLES BLUR OVERLAY FOR ACCESSIBILITY === */
+@media (max-width: 768px) {
+  .mobile-blur-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    pointer-events: none;
+    background: rgba(0,0,0,0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* Only show from subhero and below: hide above */
+    /* We'll hide it with JS above subhero if needed, or set top dynamically if you want a perfect cutoff */
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-blur-overlay {
+    display: none !important;
+  }
+}
 
 /* === MOBILE FIRST RESPONSIVE DESIGN === */
 
