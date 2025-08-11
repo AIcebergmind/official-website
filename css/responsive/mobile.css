@@ -1,3 +1,19 @@
+/* === MOBILE PARTICLES BLUR OVERLAY (SOLO DOPO ETHICS) === */
+@media (max-width: 768px) {
+  .mobile-blur-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(0,0,0,0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
 
 
 /* === MOBILE FIRST RESPONSIVE DESIGN === */
