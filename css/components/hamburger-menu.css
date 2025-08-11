@@ -19,7 +19,7 @@
   max-height: 150px;
   height: auto;
   width: auto;
-  display: block;
+  display: hidden;
 }
 .hamburger-menu-list {
   flex: 1 1 auto;
@@ -27,7 +27,7 @@
   margin-bottom: 0;
 }
 .hamburger-follow-us-container {
-  margin-top: 0;
+  margin-top: auto;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255,255,255,0.08);
   display: flex;
@@ -46,14 +46,6 @@
   display: inline-block;
   vertical-align: middle;
   transition: transform 0.2s;
-}
-.hamburger-follow-us-container {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
 }
 
 .hamburger-follow-us-btn {
@@ -97,7 +89,6 @@
   font-size: 1.1em;
   transition: transform 0.2s;
   vertical-align: middle;
-  margin-left: 0.04em;
 }
 .has-accordion > .hamburger-menu-link {
   display: flex;
@@ -106,11 +97,18 @@
   width: 100%;
 }
 
+
 .hamburger-submenu {
   transition: max-height 0.3s cubic-bezier(.4,2,.6,1), opacity 0.3s;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
+  list-style: none;
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 #projectsAccordionSubmenu[style*="display: block"] {
@@ -118,7 +116,6 @@
   opacity: 1;
   display: block !important;
 }
-
 #projectsAccordionSubmenu[style*="display: none"] {
   max-height: 0;
   opacity: 0;
@@ -146,14 +143,7 @@
   color: #5ee4c3;
 }
 
-.hamburger-submenu {
-  list-style: none;
-  padding-left: 1.2rem;
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+
 
 .hamburger-submenu-link {
   color: #b2fff2;
@@ -182,6 +172,11 @@
 .hamburger-menu-close:hover {
   background: rgba(255,255,255,0.08);
 }
+
+
+
+
+
 /* HAMBURGER MENU + SLIDER (Mobile Breadcrumb Replacement)
    ================================================ */
 
