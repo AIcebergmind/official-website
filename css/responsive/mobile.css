@@ -1,24 +1,4 @@
-/* === MOBILE PARTICLES BLUR OVERLAY (SOLO DOPO ETHICS) === */
-@media (max-width: 768px) {
-  .mobile-blur-overlay {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-    background: rgba(0,0,0,0.22);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  /* Le sezioni dopo il blur devono stare sopra */
-  .mobile-blur-overlay ~ * {
-    position: relative;
-    z-index: 2;
-  }
-}
+
 
 
 /* === MOBILE FIRST RESPONSIVE DESIGN === */
@@ -92,9 +72,6 @@
     transition: opacity 0.3s ease !important;
   }
   
-  .particles-canvas {
-    display: none; /* Disabilita particelle su mobile */
-  }
   
   /* Semplifica animazioni */
   .text-compose span {
@@ -237,3 +214,37 @@
   }
 }
 
+
+/* === MOBILE BLUR OVERLAY CON BORDO SFUMATO === */
+@media (max-width: 768px) {
+  .mobile-blur-overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(0,0,0,0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: visible;
+  }
+  .mobile-blur-overlay::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 32px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0) 100%);
+    width: 100%;
+    z-index: 2;
+    display: block;
+  }
+  /* Le sezioni dopo il blur devono stare sopra */
+  .mobile-blur-overlay ~ * {
+    position: relative;
+    z-index: 2;
+  }
+}
