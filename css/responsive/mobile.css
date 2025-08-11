@@ -1,47 +1,4 @@
-/* === MOBILE PARTICLES BLUR OVERLAY FOR ACCESSIBILITY === */
-@media (max-width: 768px) {
-  .mobile-blur-overlay {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    pointer-events: none;
-    background: rgba(0,0,0,0.22);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  /* Hamburger menu overlay always on top */
-  .hamburger-slider-menu.open {
-    position: fixed !important;
-    z-index: 10000 !important;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-  }
-  #particles-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    display: block;
-  }
-  body > *:not(#particles-background):not(.mobile-blur-overlay) {
-    position: relative;
-    z-index: 2;
-  }
-}
 
-@media (min-width: 769px) {
-  .mobile-blur-overlay {
-    display: none !important;
-  }
-}
 
 /* === MOBILE FIRST RESPONSIVE DESIGN === */
 
