@@ -32,12 +32,11 @@ class AicebergMind {
     try {
       console.log('✨ Loading modules...');
       
-      // Load iceberg, neural network, and penguin
+      // Load iceberg and neural network modules only
       const { IcebergModule } = await import('./modules/iceberg.js');
       const { createIcebergEffects } = await import('./modules/iceberg-effects.js');
       const { NeuralNetwork } = await import('./modules/neural-network.js');
-      const { PenguinModule } = await import('./modules/penguin.js');
-      
+
       this.modules.iceberg = new IcebergModule();
       this.modules.icebergEffects = createIcebergEffects(this.modules.iceberg, {
         enabled: true,
@@ -47,16 +46,14 @@ class AicebergMind {
         }
       });
       this.modules.neuralNetwork = new NeuralNetwork();
-      this.modules.penguin = new PenguinModule();
-      
+
       // Initialize video integration
       this.setupVideoIntegration();
-      
+
       window.iceberg = this.modules.iceberg;
       window.icebergEffects = this.modules.icebergEffects;
       window.neuralNetwork = this.modules.neuralNetwork;
-      window.penguin = this.modules.penguin;
-      
+
       console.log('✅ All modules loaded successfully');
     } catch (error) {
       console.error('❌ Error loading modules:', error);

@@ -100,7 +100,6 @@
   letter-spacing: 0.08em;
   padding-left: 4.5rem;
   opacity: 0.8;
-  top
 }
 
 /* Enfasi "AI" nel titolo */
@@ -353,7 +352,7 @@
     height: auto;
     position: absolute;
     left: 20%;
-    top: 12vh;si 
+    top: 12vh;
     transform: translateX(-50%);
     margin: 0;
     z-index: 3001;
