@@ -1,0 +1,103 @@
+---
+const defaultCategories = [
+  { slug: 'all', name: 'All Articles' },
+  { slug: 'ai-insights', name: 'AI Insights' },
+  { slug: 'child-development', name: 'Child Development' },
+  { slug: 'education-tech', name: 'Education Tech' },
+  { slug: 'neuroscience', name: 'Neuroscience' },
+  { slug: 'philosophy', name: 'Philosophy' }
+];
+
+const { categories = [], activeCategory = 'all' } = Astro.props;
+const finalCategories = categories.length > 0 ? categories : defaultCategories;
+---
+
+<div class="filters-bar">
+  <div class="filters categories">
+    {finalCategories.map(category => (
+      <button
+        class={`category-filter ${activeCategory === category.slug ? 'active' : ''}`}
+        data-category={category.slug}
+      >
+        {category.name}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.addEventListener("scroll", () => {
+    const bar = document.querySelector(".filters-bar");
+    if (window.scrollY > 120) {
+      bar.classList.add("compact");
+    } else {
+      bar.classList.remove("compact");
+    }
+  });
+</script>
+
+<style>
+.blog-categories,
+.blog-tags {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--blog-filters-spacing);
+  flex-wrap: wrap;
+  padding: var(--spacing-lg) 0;
+}
+
+/* Bottoni categorie & tag */
+.category-filter,
+.tag-filter {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-filter:hover,
+.category-filter.active,
+.tag-filter:hover,
+.tag-filter.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Barra sticky */
+.filters-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column; /* categorie sopra, tag sotto */
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;         
+  margin-left: calc(-50vw + 50%);
+  transition: all 0.3s ease;
+}
+
+/* Stato compatto */
+.filters-bar.compact {
+  padding: 0.5rem 1rem;
+  gap: 0.6rem;
+}
+
+.filters-bar.compact .category-filter,
+.filters-bar.compact .tag-filter {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+}
+
+</style>

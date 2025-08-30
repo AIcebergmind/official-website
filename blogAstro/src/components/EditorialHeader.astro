@@ -1,0 +1,348 @@
+---
+// Editorial header: props for title, caption, sectionNumber
+const { title, caption, sectionNumber = '※' } = Astro.props;
+---
+<div class="section-header-editorial">
+  <!-- Abstract Shapes -->
+  <div class="triangle-1"></div>
+  <div class="triangle-2"></div>
+
+  <!-- Intersecting Bars -->
+  <div class="bar-1"></div>
+  <div class="bar-2"></div>
+  <div class="bar-3"></div>
+
+<!-- semiluna -->
+  <div class="semicircle"></div> 
+
+  <!-- Overlay translucent shapes -->
+  <div class="overlay-1"></div>
+  <div class="overlay-2"></div>
+
+
+
+  <!-- Editorial content -->
+  <div class="section-number">{sectionNumber}</div>
+  <h1 class="editorial-heading">{title}</h1>
+  <div class="iceberg-accent"></div>
+  <p class="editorial-caption">{caption}</p>
+</div>
+
+<style>
+
+/* --- Abstract Editorial Header --- */
+
+.section-header-editorial {
+  position: relative;
+  text-align: center;
+  margin-bottom: 4rem;
+  overflow: visible;
+}
+
+/* Main heading */
+.editorial-heading {
+  position: relative;
+  font-size: clamp(2.8rem, 6vw, 3.5rem);
+  font-weight: 100;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--color-text, #fff);
+  z-index: 5;
+  animation: fadeInTitle 4s ease both;
+}
+
+/* accent bar */
+.iceberg-accent {
+  width: 160px;
+  height: 4px;
+  background: linear-gradient(90deg, #00D4FF, #7ec9c3);
+  margin: 1.2rem auto;
+  border-radius: 3px;
+  opacity: 0.9;
+  animation: accentSlide 1.2s ease forwards;
+  z-index: 15;
+  position: relative;
+}
+
+/* caption */
+.editorial-caption {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text-muted, #ffffffff);
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.5;
+  animation: fadeInUp 0.9s ease both;
+  z-index: 1;
+  position: relative;
+}
+
+/* animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes accentSlide {
+  from { width: 0; opacity: 0; }
+  to { width: 160px; opacity: 1; }
+}
+@keyframes floatShape {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(20px) scale(1.05); }
+}
+
+/* --- BASE SHAPES --- */
+
+/* Large circle */
+.section-header-editorial::before {
+  content: "";
+  position: absolute;
+  top: 55%;
+  left: 65%;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, rgba(10,10,10,0) 70%);
+  transform: translate(-50%, -50%) scale(0.8);
+  animation: circleEnter 2s ease forwards, floatCircle 18s infinite ease-in-out alternate 2s;
+  z-index: 1;
+  box-shadow: inset 0 0 0 15px rgba(0,212,255,0.08); /* bordo interno */
+}
+
+/* Accent circle */
+.section-header-editorial::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(126,201,195,0.25), rgba(0,212,255,0));
+  transform: translate(-50%, -50%) scale(0.6);
+  animation: circleEnter 2.5s ease forwards, pulseCircle 14s infinite ease-in-out alternate 2.5s;
+  z-index: 2;
+}
+
+/* --- TRIANGLES --- */
+.section-header-editorial .triangle-1 {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  border-left: 460px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 160px solid rgba(0,212,255,0.1);
+  opacity: 0;
+  transform: translateY(-60px) rotate(-30deg);
+  animation: triangle1Enter 1.8s ease forwards 0.4s, triangleFloat1 16s infinite ease-in-out alternate 3s;
+}
+
+.section-header-editorial .triangle-2 {
+  position: absolute;
+  bottom: 12%;
+  right: 22%;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 180px solid rgba(126,201,195,0.1);
+  opacity: 0;
+  transform: translateY(60px) rotate(45deg);
+  animation: triangle2Enter 1.8s ease forwards 0.8s, triangleFloat2 20s infinite ease-in-out alternate 4s;
+}
+
+/* --- BARS --- */
+.section-header-editorial .bar-1 {
+  position: absolute;
+  top: 30%;
+  left: -200px;
+  width: 600px;
+  height: 4px;
+  background: rgba(255,255,255,0.12);
+  transform: translateX(-200px) rotate(18deg);
+  opacity: 0;
+  animation: bar1Enter 1.6s ease forwards 0.6s, barFloat1 14s infinite ease-in-out alternate 3s;
+}
+
+.section-header-editorial .bar-2 {
+  position: absolute;
+  top: 65%;
+  left: -250px;
+  width: 700px;
+  height: 3px;
+  background: rgba(126,201,195,0.2);
+  transform: translateX(-250px) rotate(0deg);
+  opacity: 0;
+  animation: bar2Enter 1.8s ease forwards 0.9s, barFloat2 18s infinite ease-in-out alternate 4s;
+}
+
+.section-header-editorial .bar-3 {
+  position: absolute;
+  left: 45%;
+  top: -100px;
+  width: 6px;
+  height: 400px;
+  background: rgba(0,212,255,0.12);
+  transform: translateY(-120px) rotate(8deg);
+  opacity: 0;
+  animation: bar3Enter 2s ease forwards 1.2s, barFloat3 22s infinite ease-in-out alternate 5s;
+}
+
+/* --- OVERLAYS --- */
+.section-header-editorial .overlay-1 {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  transform: translate(-50%,-50%) scale(0.5);
+  opacity: 0;
+  animation: overlay1Enter 1.6s ease forwards 1.4s, overlayPulse1 12s infinite ease-in-out alternate 3s;
+}
+
+.section-header-editorial .overlay-2 {
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  width: 220px;
+  height: 100px;
+  background: rgba(126,201,195,0.08);
+  transform: rotate(-15deg) scale(0.5);
+  opacity: 0;
+  animation: overlay2Enter 1.8s ease forwards 1.6s, overlayPulse2 15s infinite ease-in-out alternate 4s;
+}
+
+/* --- DOT --- */
+.editorial-heading::after {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -40px;
+  width: 80px;
+  height: 80px;
+  background: rgba(0,212,255,0.08);
+  border-radius: 50%;
+  z-index: 4;
+  opacity: 0;
+  animation: dotEnter 1.5s ease forwards 1.2s, dotPulse 10s infinite ease-in-out alternate 3s;
+}
+
+
+.section-header-editorial .semicircle {
+  position: absolute;
+  top: 10%;
+  left: -40%;
+  width: 530px;
+  height: 500px;
+  border: 3px solid rgba(0,212,255,0.3); /* bordo */
+  border-radius: 65%; /* cerchio */
+
+  
+  /* nascondiamo metà per creare l’arco */
+  border-left: none;
+  border-bottom: none;
+
+  transform: rotate(385deg); /* puoi orientarla come vuoi */
+  z-index: 0;
+  opacity: 0;
+  animation: semicircleEnter 1.6s ease forwards 0.7s;
+}
+
+
+
+/* --- Animations --- */
+@keyframes fadeInTitle {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* CIRCLE ANIMATIONS */
+@keyframes circleEnter {
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes floatCircle {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to   { transform: translate(-48%, -52%) scale(1.08); }
+}
+@keyframes pulseCircle {
+  from { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+  to   { transform: translate(-50%, -50%) scale(1.05); opacity: 0.9; }
+}
+
+/* TRIANGLES */
+@keyframes triangle1Enter {
+  0%   { opacity: 0; transform: translateY(-60px) rotate(-30deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(-10deg); }
+}
+@keyframes triangle2Enter {
+  0%   { opacity: 0; transform: translateY(60px) rotate(45deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(15deg); }
+}
+@keyframes triangleFloat1 {
+  from { transform: translateY(0) rotate(-10deg); }
+  to   { transform: translateY(-15px) rotate(-14deg); }
+}
+@keyframes triangleFloat2 {
+  from { transform: translateY(0) rotate(15deg); }
+  to   { transform: translateY(12px) rotate(20deg); }
+}
+
+/* BARS */
+@keyframes bar1Enter {
+  to { opacity: 1; transform: translateX(0) rotate(18deg); }
+}
+@keyframes bar2Enter {
+  to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+@keyframes bar3Enter {
+  to { opacity: 1; transform: translateY(0) rotate(8deg); }
+}
+@keyframes barFloat1 {
+  from { transform: translateX(0) rotate(18deg); }
+  to   { transform: translateX(12px) rotate(16deg); }
+}
+@keyframes barFloat2 {
+  from { transform: translateX(0) rotate(0deg); }
+  to   { transform: translateX(-15px) rotate(3deg); }
+}
+@keyframes barFloat3 {
+  from { transform: translateY(0) rotate(8deg); }
+  to   { transform: translateY(-15px) rotate(6deg); }
+}
+
+/* OVERLAYS */
+@keyframes overlay1Enter {
+  to { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+@keyframes overlay2Enter {
+  to { opacity: 1; transform: rotate(-15deg) scale(1); }
+}
+@keyframes overlayPulse1 {
+  from { transform: translate(-50%,-50%) scale(1); }
+  to   { transform: translate(-50%,-50%) scale(1.08); }
+}
+@keyframes overlayPulse2 {
+  from { transform: rotate(-15deg) scale(1); }
+  to   { transform: rotate(-12deg) scale(1.1); }
+}
+
+/* DOT */
+@keyframes dotEnter {
+  to { opacity: 1; }
+}
+@keyframes dotPulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to   { transform: scale(1.2); opacity: 0.9; }
+}
+
+@keyframes semicircleEnter {
+  from { opacity: 0; transform: rotate(-25deg) scale(0.8); }
+  to   { opacity: 1; transform: rotate(-25deg) scale(1); }
+}
+
+</style>
+

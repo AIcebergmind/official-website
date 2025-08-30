@@ -1,0 +1,274 @@
+---
+import MainLayout from './MainLayout.astro';
+import EditorialHeader from '../components/EditorialHeader.astro';
+import CategoryFilters from '../components/CategoryFilters.astro';
+import TagFilters from '../components/TagFilters.astro'; 
+import FeaturedArticle from '../components/FeaturedArticle.astro';
+import BlogCard from '../components/BlogCard.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+import { getCollection } from 'astro:content';
+
+// Recupero articoli
+let articles = await getCollection('articoli');
+articles = articles.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+// Filtraggio dinamico da querystring
+const url = new URL(Astro.request.url);
+const activeCategory = url.searchParams.get('category') ?? 'all';
+const activeTag = url.searchParams.get('tag');
+
+if (activeCategory !== 'all') {
+  articles = articles.filter(
+    a => a.data.category?.toLowerCase() === activeCategory.toLowerCase()
+  );
+}
+
+if (activeTag) {
+  articles = articles.filter(
+    a => a.data.tags?.map(t => t.toLowerCase()).includes(activeTag.toLowerCase())
+  );
+}
+
+// Featured + others
+const featured = articles.length > 0 ? articles[0] : null;
+const otherArticles = articles.slice(1);
+---
+
+<MainLayout title="Deep Layers" description="The blog of AIceberg Mind">
+  <!-- ====== PROGRESS BAR ====== -->
+  <div id="scroll-progress"></div>
+
+  <!-- Back Navigation -->
+  <div class="subpage-back-nav">
+    <a href="/" class="back-home-btn">← BACK TO HOME</a>
+  </div>
+
+  <!-- BLOG MAIN CONTENT -->
+  <section class="parallax-section editorial-section blog-section" id="blog-main">
+    <div class="editorial-container">
+      <div class="editorial-content">
+        <!-- Titolo + Caption -->
+        <EditorialHeader
+          title="Deep Layers"
+          caption="The blog of Aiceberg Mind"
+          sectionNumber="※"
+        />
+
+        <!-- Category filters -->
+        <CategoryFilters 
+          categories={[
+            { slug: 'all', name: 'All Articles' },
+            { slug: 'ai-insights', name: 'AI Insights' },
+            { slug: 'child-development', name: 'Child Development' },
+            { slug: 'education-tech', name: 'Education Tech' },
+            { slug: 'neuroscience', name: 'Neuroscience' },
+            { slug: 'philosophy', name: 'Philosophy' }
+          ]} 
+          activeCategory={activeCategory}
+        />
+
+        <!-- Tag filters -->
+        <TagFilters
+          tags={[
+            { slug: 'ai', name: 'AI' },
+            { slug: 'ethics', name: 'Ethics' },
+            { slug: 'education', name: 'Education' },
+            { slug: 'research', name: 'Research' }
+          ]}
+          activeTag={activeTag ?? ''}
+        />
+
+        <!-- Featured -->
+        {featured && (
+          <FeaturedArticle
+            image={featured.data.image}
+            category={featured.data.category}
+            title={featured.data.title}
+            excerpt={featured.data.description}
+            date={featured.data.date}
+            readingTime={featured.data.readingTime}
+            link={`/blog/${featured.slug}`}
+          />
+        )}
+
+        <!-- Griglia articoli -->
+        {otherArticles.length > 0 && (
+          <div class="blog-articles-grid">
+            {otherArticles.map(article => (
+              <BlogCard entry={article} />
+            ))}
+          </div>
+        )}
+
+        <!-- Pulsante di condivisione -->
+        <button
+          class="share-btn"
+          data-share
+          data-title="Deep Layers"
+          data-url={Astro.url}
+        >
+          Share
+        </button>
+
+        <slot />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SCROLL TO TOP BUTTON ====== -->
+  <button id="scroll-to-top" title="Go to top">↑</button>
+
+  <Footer />
+  <CookieBanner />
+
+  <!-- BLOG SCRIPTS SOLO IN QUESTA PAGINA -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="/js/blog-parallax.js" type="module" defer></script>
+  <script src="/js/blog-filters.js" type="module" defer></script>
+  <script src="/js/blog-extras.js" type="module" defer></script>
+</MainLayout>
+
+
+
+<style>
+/* ====== BLOG SECTION BASE ====== */
+.blog-section.editorial-section {
+  padding: 12rem 0 8rem 0;
+  min-height: 100vh;
+}
+
+.blog-section .editorial-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.blog-section .blog-categories {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--blog-filters-spacing);
+  flex-wrap: wrap;
+  padding: var(--spacing-lg) 0;
+}
+
+.blog-section .category-filter {
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.blog-section .category-filter:hover,
+.blog-section .category-filter.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.blog-section .blog-featured-article {
+  margin-bottom: var(--blog-header-spacing);
+  margin-top: var(--spacing-xl);
+}
+
+
+
+.blog-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--blog-card-spacing);
+}
+
+
+/* ====== PROGRESS BAR ====== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--color-accent, #00D4FF);
+  width: 0%;
+z-index: 9999;}
+
+/* ====== SCROLL TO TOP ====== */
+#scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.8rem 1rem;
+  font-size: 1.4rem;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+
+/* Share button */
+.share-btn {
+  gap: 50px;
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+}
+
+.share-btn:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.share-btn:active {
+  transform: translateY(0);
+}
+
+.subpage-back-nav {
+  position: fixed;
+  top: 8rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.back-home-btn {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.back-home-btn:hover {
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+</style>

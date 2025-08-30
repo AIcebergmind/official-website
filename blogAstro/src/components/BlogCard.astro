@@ -1,0 +1,312 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type LegacyProps = {
+  image?: string;
+  category?: string;
+  title?: string;
+  excerpt?: string;
+  date?: string | Date;
+  readingTime?: number | string;
+  link?: string;
+};
+
+const { entry, ...legacy } = Astro.props as {
+  entry?: CollectionEntry<"articoli">;
+} & LegacyProps;
+
+// Unifica i dati
+const data = entry?.data ?? {
+  title: legacy.title ?? "",
+  excerpt: legacy.excerpt ?? "",
+  category: legacy.category ?? "Uncategorized",
+  date: legacy.date,
+  readingTime:
+    typeof legacy.readingTime === "string"
+      ? parseInt(legacy.readingTime) || undefined
+      : legacy.readingTime,
+  image: legacy.image,
+};
+
+const slug =
+  entry?.slug ??
+  (legacy.link ? legacy.link.replace(/^\/blog\/|\/$/g, "") : undefined);
+
+const href = entry
+  ? `/blog/${entry.slug}/`
+  : legacy.link ?? (slug ? `/blog/${slug}/` : "#");
+
+const fallbackImage = "/images/blog-placeholder.png";
+
+// ✅ Normalizza qualsiasi input (Date | string | undefined) in un Date valido
+function toDateSafe(input: unknown): Date | undefined {
+  if (input instanceof Date) return isNaN(input.getTime()) ? undefined : input;
+  if (typeof input === "string" && input.trim()) {
+    const d = new Date(input);
+    return isNaN(d.getTime()) ? undefined : d;
+  }
+  return undefined;
+}
+
+function formatDate(input: unknown, locale = "en-US") {
+  const d = toDateSafe(input);
+  return d
+    ? d.toLocaleDateString(locale, { year: "numeric", month: "long", day: "numeric" })
+    : "";
+}
+---
+
+
+<article
+  class="blog-article-card"
+  data-category={(data.category || "Uncategorized").toLowerCase()}
+>
+  <div class="article-image">
+    <a href={href}>
+      <img
+        src={data.image || fallbackImage}
+        alt={data.title}
+        class={`article-thumb ${!data.image ? "blog-placeholder-image" : ""}`}
+        loading="lazy"
+      />
+    </a>
+  </div>
+
+  <div class="article-content">
+    {data.category && <div class="article-category">{data.category}</div>}
+
+    <h3 class="article-title main-title">
+      <a href={href}>{data.title}</a>
+    </h3>
+
+    {data.excerpt && <p class="article-excerpt">{data.excerpt}</p>}
+
+<div class="article-meta">
+  {formatDate(data.date) && (
+    <span class="article-date">{formatDate(data.date)}</span>
+  )}
+  {data.readingTime && (
+    <span class="article-reading-time">
+      {typeof data.readingTime === "number"
+        ? `${data.readingTime} min read`
+        : data.readingTime}
+    </span>
+  )}
+</div>
+
+    <a href={href} class="article-read-more main-link">READ MORE</a>
+  </div>
+</article>
+
+
+
+
+
+
+<style>
+/* === Blog Article Card Enhanced === */
+
+.blog-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.blog-article-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.22), 0 1.5px 8px rgba(0,0,0,0.10);
+  backdrop-filter: blur(3px);
+  position: relative;
+}
+
+/* glow breathing */
+.blog-article-card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 45px rgba(0,0,0,0.28);
+}
+
+/* shimmer on image */
+.article-image {
+  position: relative;
+  overflow: hidden;
+}
+.article-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.blog-article-card:hover .article-image::after {
+  transform: translateX(100%);
+}
+
+.article-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: blur(1.2px) grayscale(0.15) brightness(0.98);
+}
+.blog-article-card:hover .article-thumb {
+  transform: scale(1.05);
+  filter: none;
+}
+
+/* content */
+.article-content {
+  padding: 2.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.article-category {
+  display: inline-block;
+  padding: 0.3rem 1.1rem;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid #00D4FF;
+  color: #00D4FF;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.8rem;
+  border-radius: 3px;
+}
+
+/* main title with underline accent */
+.main-title {
+  font-size: 2rem;
+  font-weight: 200;
+  color: #fff;
+  margin: 0.8rem 0 1.2rem;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+.main-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.main-title a:hover {
+  color: #00D4FF;
+}
+.main-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #00D4FF, #7ec9c3);
+  transition: width 0.4s ease;
+}
+.blog-article-card:hover .main-title::after {
+  width: 100%;
+}
+
+/* excerpt */
+.article-excerpt {
+  font-size: 1rem;
+  color: #ffffffff;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.article-meta {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65); /* meno brillante */
+  margin-bottom: 1.5rem;
+}
+
+/* link with animated arrow */
+.main-link {
+  color: #00D4FF;
+  text-decoration: none;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 1.15rem;
+  margin-top: 1.2rem;
+  display: inline-block;
+  position: relative;
+  padding-right: 1.2rem;
+  border-bottom: 2px solid #00D4FF;
+  transition: color 0.2s, border-color 0.2s;
+}
+.main-link::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  transition: transform 0.3s ease;
+}
+.main-link:hover {
+  color: #fff;
+  border-color: #fff;
+}
+.main-link:hover::after {
+  transform: translateX(6px);
+}
+
+.blog-article-card:hover .main-link {
+  letter-spacing: 0.1em;
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  
+  .article-content {
+    padding: 1.8rem 1.5rem;
+  }
+  .main-title {
+    font-size: 2rem;
+  }
+  .article-excerpt {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 1.6rem;
+  }
+  .article-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+@media (max-width: 480px) {
+ 
+  .blog-articles-grid {
+    gap: 1.2rem;
+  }
+  .article-content {
+    padding: 1.2rem 1rem;
+  }
+  .article-category {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.7rem;
+  }
+  .main-title {
+    font-size: 1.4rem;
+  }
+  .article-excerpt {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+}
+
+</style>
+

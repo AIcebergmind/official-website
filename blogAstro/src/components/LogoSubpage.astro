@@ -1,0 +1,36 @@
+---
+// Logo subpage component
+---
+<div class="subpage-logowire">
+  <img src="/images/logo/AIceberg_mind_logo_gray.svg" alt="AIceberg Mind Logo" class="subpage-logo" />
+</div>
+
+<style>
+.subpage-logowire {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--spacing-lg, 2.5rem) 0 var(--spacing-md, 1.5rem) 0;
+  padding: 0;
+}
+.subpage-logo {
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+  filter: grayscale(0.2) brightness(0.95);
+  opacity: 0.92;
+  transition: filter 0.3s;
+}
+.subpage-logo:hover {
+  filter: grayscale(0) brightness(1.05) drop-shadow(0 2px 12px rgba(94,228,195,0.12));
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .subpage-logo {
+    max-width: 120px;
+  }
+  .subpage-logowire {
+    margin: var(--spacing-md, 1.5rem) 0 var(--spacing-sm, 1rem) 0;
+  }
+}
+</style>

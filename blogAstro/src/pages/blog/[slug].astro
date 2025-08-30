@@ -1,0 +1,37 @@
+---
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allArticles = await getCollection("articoli");
+  return allArticles.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { slug: entry.slug }, // passo solo lo slug
+  }));
+}
+
+const { slug } = Astro.props;
+const allArticles = await getCollection("articoli");
+const entry = allArticles.find((a) => a.slug === slug);
+
+if (!entry) {
+  throw new Error(`Articolo non trovato: ${slug}`);
+}
+
+const { Content, data } = await entry.render();
+---
+
+<ArticleLayout
+  title={data?.title}
+  description={data?.description}
+  category={data?.category}
+  date={data?.date}
+  readingTime={data?.readingTime}
+  image={data?.image}
+  author={data?.author}
+  authorRole={data?.authorRole}
+  tags={data?.tags}
+  currentSlug={entry.slug}
+>
+  <Content />
+</ArticleLayout>
